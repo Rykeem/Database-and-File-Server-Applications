@@ -25,8 +25,9 @@ namespace Software_2_Rykeem
 
         private void Main_Load(object sender, EventArgs e)
         {
-
-        }
+            TimeZoneInfo timeZone = TimeZoneInfo.Local;
+            regionTB.Text = timeZone.DisplayName;
+                    }
 
         private void logInButton_Click(object sender, EventArgs e)
         {
@@ -34,7 +35,8 @@ namespace Software_2_Rykeem
             langaugeTB.Text = languageCode;
             string userName = userNameTB.Text;
             string password = passwordTB.Text;
-            Connection.startConnection();
+            
+            //Connection.startConnection();
 
 
 
@@ -61,6 +63,12 @@ namespace Software_2_Rykeem
                     MessageBox.Show("用户名或密码错误");
                 }
             }
+
+            
+            Customer customer = new Customer();
+            customer.Show();
+            this.Hide();
+
         }
     }
 }

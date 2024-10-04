@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -73,5 +74,25 @@ namespace Software_2_Rykeem.Database
             }
         }
 
+
+        public static void CustomerDatabase(DataGridView datagrid)
+        {
+            try
+            {
+                string sql = @"SELECT customerName, address, phone, city, country
+                    FROM address, customer , city, country
+                    WHERE  address.addressId = customer.addressId AND address.cityId = city.cityId AND city.countryId = country.countryId ";
+
+               MySqlDataAdapter data = new MySqlDataAdapter(sql, conn);
+                DataTable dataTable = new DataTable();
+                data.Fill(dataTable);
+                datagrid.DataSource = dataTable;
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

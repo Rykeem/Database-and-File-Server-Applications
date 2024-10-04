@@ -35,6 +35,8 @@
             this.logInButton = new System.Windows.Forms.Button();
             this.languageLB = new System.Windows.Forms.Label();
             this.langaugeTB = new System.Windows.Forms.TextBox();
+            this.regionTB = new System.Windows.Forms.TextBox();
+            this.regionLB = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // userNameTB
@@ -96,11 +98,30 @@
             this.langaugeTB.Size = new System.Drawing.Size(37, 20);
             this.langaugeTB.TabIndex = 6;
             // 
+            // regionTB
+            // 
+            this.regionTB.Location = new System.Drawing.Point(129, 227);
+            this.regionTB.Name = "regionTB";
+            this.regionTB.ReadOnly = true;
+            this.regionTB.Size = new System.Drawing.Size(100, 20);
+            this.regionTB.TabIndex = 7;
+            // 
+            // regionLB
+            // 
+            this.regionLB.AutoSize = true;
+            this.regionLB.Location = new System.Drawing.Point(65, 227);
+            this.regionLB.Name = "regionLB";
+            this.regionLB.Size = new System.Drawing.Size(41, 13);
+            this.regionLB.TabIndex = 8;
+            this.regionLB.Text = "Region";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 268);
+            this.Controls.Add(this.regionLB);
+            this.Controls.Add(this.regionTB);
             this.Controls.Add(this.langaugeTB);
             this.Controls.Add(this.languageLB);
             this.Controls.Add(this.logInButton);
@@ -125,6 +146,8 @@
         private System.Windows.Forms.Button logInButton;
         private System.Windows.Forms.Label languageLB;
         private System.Windows.Forms.TextBox langaugeTB;
+        private System.Windows.Forms.TextBox regionTB;
+        private System.Windows.Forms.Label regionLB;
     }
 }
 

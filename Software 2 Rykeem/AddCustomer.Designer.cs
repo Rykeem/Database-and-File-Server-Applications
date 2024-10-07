@@ -130,6 +130,7 @@
             this.CancelB1.TabIndex = 10;
             this.CancelB1.Text = "Cancel";
             this.CancelB1.UseVisualStyleBackColor = true;
+            this.CancelB1.Click += new System.EventHandler(this.CancelB1_Click);
             // 
             // SaveB1
             // 
@@ -139,6 +140,7 @@
             this.SaveB1.TabIndex = 11;
             this.SaveB1.Text = "Save";
             this.SaveB1.UseVisualStyleBackColor = true;
+            this.SaveB1.Click += new System.EventHandler(this.SaveB1_Click);
             // 
             // AddCustomer
             // 
@@ -159,6 +161,7 @@
             this.Controls.Add(this.nameLB1);
             this.Name = "AddCustomer";
             this.Text = "AddCustomer";
+            this.Load += new System.EventHandler(this.AddCustomer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

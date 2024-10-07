@@ -48,6 +48,7 @@
             this.CustomerDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.CustomerDGV.Size = new System.Drawing.Size(567, 193);
             this.CustomerDGV.TabIndex = 0;
+            this.CustomerDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDGV_CellContentClick);
             // 
             // addButton
             // 
@@ -57,6 +58,7 @@
             this.addButton.TabIndex = 1;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // modifyButton
             // 
@@ -103,7 +105,6 @@
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.CustomerDGV);
             this.Name = "Customer";
-            this.Text = "Customer";
             this.Load += new System.EventHandler(this.Customer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).EndInit();
             this.ResumeLayout(false);

@@ -36,7 +36,6 @@ namespace Software_2_Rykeem
             string userName = userNameTB.Text;
             string password = passwordTB.Text;
             
-            //Connection.startConnection();
 
 
 
@@ -46,6 +45,9 @@ namespace Software_2_Rykeem
                 if (Connection.Login(userName, password))
                 {
                     MessageBox.Show("Login Successfull");
+                    Customer customer = new Customer();
+                    customer.Show();
+                    this.Hide();
                 }
                 else
                 {
@@ -57,6 +59,9 @@ namespace Software_2_Rykeem
                 if (Connection.Login(userName, password))
                 {
                     MessageBox.Show("登录成功");
+                    Customer customer = new Customer();
+                    customer.Show();
+                    this.Hide();
                 }
                 else
                 {
@@ -65,9 +70,7 @@ namespace Software_2_Rykeem
             }
 
             
-            Customer customer = new Customer();
-            customer.Show();
-            this.Hide();
+            
 
         }
     }

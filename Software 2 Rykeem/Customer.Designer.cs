@@ -68,6 +68,7 @@
             this.modifyButton.TabIndex = 2;
             this.modifyButton.Text = "Modify";
             this.modifyButton.UseVisualStyleBackColor = true;
+            this.modifyButton.Click += new System.EventHandler(this.modifyButton_Click);
             // 
             // deleteButton
             // 

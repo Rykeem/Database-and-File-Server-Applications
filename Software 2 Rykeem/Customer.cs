@@ -41,5 +41,38 @@ namespace Software_2_Rykeem
         {
 
         }
+
+        private void modifyButton_Click(object sender, EventArgs e)
+        {
+            if (CustomerDGV.CurrentRow == null || !CustomerDGV.CurrentRow.Selected)
+            {
+                MessageBox.Show("No row has been selected.");
+                return;
+            }
+            int index = CustomerDGV.CurrentCell.RowIndex;
+
+
+                string ID = CustomerDGV.Rows[index].Cells[0].Value.ToString();
+                string name = CustomerDGV.Rows[index].Cells[1].Value.ToString();
+                string address = CustomerDGV.Rows[index].Cells[2].Value.ToString();
+                string phone = CustomerDGV.Rows[index].Cells[3].Value.ToString();
+                string city = CustomerDGV.Rows[index].Cells[4].Value.ToString();
+                string country = CustomerDGV.Rows[index].Cells[5].Value.ToString();
+
+            this.Hide();
+            ModifyCustomer modify = new ModifyCustomer(ID, name, address, phone, city, country, CustomerDGV);
+            modify.Show();
+
+
+
+
+
+
+
+
+            
+            
+
+        }
     }
 }

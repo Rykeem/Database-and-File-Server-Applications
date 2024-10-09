@@ -47,14 +47,7 @@ namespace Software_2_Rykeem
                 string country = countryTB1.Text;
             
             Connection.CustomerAdd(name, address, phone, city, country);
-            //Connection.CustomerDatabase(data);
-            Customer customer = Application.OpenForms.OfType<Customer>().FirstOrDefault();
-            if (customer != null)
-            {
-                Connection.CustomerDatabase(datagrid);
-                
-            }
-            
+            Connection.CustomerDatabase(datagrid);
             Customer.Instance.Show();
             this.Close();
 

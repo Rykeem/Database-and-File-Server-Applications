@@ -40,6 +40,8 @@
             this.cityLB2 = new System.Windows.Forms.Label();
             this.addressLB2 = new System.Windows.Forms.Label();
             this.nameLB2 = new System.Windows.Forms.Label();
+            this.IDTB = new System.Windows.Forms.TextBox();
+            this.IDLB = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // SaveB2
@@ -50,6 +52,7 @@
             this.SaveB2.TabIndex = 23;
             this.SaveB2.Text = "Save";
             this.SaveB2.UseVisualStyleBackColor = true;
+            this.SaveB2.Click += new System.EventHandler(this.SaveB2_Click);
             // 
             // CancelB2
             // 
@@ -59,6 +62,7 @@
             this.CancelB2.TabIndex = 22;
             this.CancelB2.Text = "Cancel";
             this.CancelB2.UseVisualStyleBackColor = true;
+            this.CancelB2.Click += new System.EventHandler(this.CancelB2_Click);
             // 
             // countryTB2
             // 
@@ -83,14 +87,14 @@
             // 
             // addressTB2
             // 
-            this.addressTB2.Location = new System.Drawing.Point(128, 103);
+            this.addressTB2.Location = new System.Drawing.Point(128, 132);
             this.addressTB2.Name = "addressTB2";
             this.addressTB2.Size = new System.Drawing.Size(100, 20);
             this.addressTB2.TabIndex = 18;
             // 
             // nameTB2
             // 
-            this.nameTB2.Location = new System.Drawing.Point(128, 31);
+            this.nameTB2.Location = new System.Drawing.Point(128, 89);
             this.nameTB2.Name = "nameTB2";
             this.nameTB2.Size = new System.Drawing.Size(100, 20);
             this.nameTB2.TabIndex = 17;
@@ -125,7 +129,7 @@
             // addressLB2
             // 
             this.addressLB2.AutoSize = true;
-            this.addressLB2.Location = new System.Drawing.Point(18, 106);
+            this.addressLB2.Location = new System.Drawing.Point(18, 135);
             this.addressLB2.Name = "addressLB2";
             this.addressLB2.Size = new System.Drawing.Size(45, 13);
             this.addressLB2.TabIndex = 13;
@@ -134,17 +138,37 @@
             // nameLB2
             // 
             this.nameLB2.AutoSize = true;
-            this.nameLB2.Location = new System.Drawing.Point(18, 31);
+            this.nameLB2.Location = new System.Drawing.Point(18, 92);
             this.nameLB2.Name = "nameLB2";
             this.nameLB2.Size = new System.Drawing.Size(35, 13);
             this.nameLB2.TabIndex = 12;
             this.nameLB2.Text = "Name";
+            // 
+            // IDTB
+            // 
+            this.IDTB.Location = new System.Drawing.Point(128, 53);
+            this.IDTB.Name = "IDTB";
+            this.IDTB.ReadOnly = true;
+            this.IDTB.Size = new System.Drawing.Size(100, 20);
+            this.IDTB.TabIndex = 25;
+            this.IDTB.TextChanged += new System.EventHandler(this.IDTB_TextChanged);
+            // 
+            // IDLB
+            // 
+            this.IDLB.AutoSize = true;
+            this.IDLB.Location = new System.Drawing.Point(18, 56);
+            this.IDLB.Name = "IDLB";
+            this.IDLB.Size = new System.Drawing.Size(18, 13);
+            this.IDLB.TabIndex = 24;
+            this.IDLB.Text = "ID";
             // 
             // ModifyCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(353, 514);
+            this.Controls.Add(this.IDTB);
+            this.Controls.Add(this.IDLB);
             this.Controls.Add(this.SaveB2);
             this.Controls.Add(this.CancelB2);
             this.Controls.Add(this.countryTB2);
@@ -178,5 +202,7 @@
         private System.Windows.Forms.Label cityLB2;
         private System.Windows.Forms.Label addressLB2;
         private System.Windows.Forms.Label nameLB2;
+        private System.Windows.Forms.TextBox IDTB;
+        private System.Windows.Forms.Label IDLB;
     }
 }

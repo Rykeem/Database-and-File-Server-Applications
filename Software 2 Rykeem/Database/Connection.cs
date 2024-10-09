@@ -96,7 +96,64 @@ namespace Software_2_Rykeem.Database
                 MessageBox.Show(ex.Message);
             }
         }
+        public static void ModifyCustomer(string id, string name, string address, string number, string city, string country)
+        {
+            try
+            {
+              
 
+
+
+                string customer = @"UPDATE customer SET customerName = @name WHERE customerId = @id"; // correct
+                string addressX = @"UPDATE address JOIN customer ON address.addressId = customer.addressId SET address = @address, phone = @number WHERE customer.customerId = @id"; //correct
+                string cityX = @"UPDATE city JOIN address ON city.cityId = address.cityId JOIN customer ON address.addressId = customer.addressId SET city.city = @city WHERE customer.customerId = @id"; //correct 
+                string countryX = @"UPDATE country JOIN city ON country.countryId = city.countryId JOIN address ON city.cityId = address.cityId JOIN customer ON address.addressId = customer.addressId SET country.country = @country WHERE customer.customerId = @id "; //correct
+
+
+                using (MySqlCommand data = new MySqlCommand(customer, conn))
+                {
+                    data.Parameters.AddWithValue("@name", name);
+                    data.Parameters.AddWithValue("@id", id);
+                    data.ExecuteNonQuery();
+
+                }
+                
+
+                using (MySqlCommand data = new MySqlCommand(addressX, conn))
+                {
+                    data.Parameters.AddWithValue("@address", address);
+                    data.Parameters.AddWithValue("@number", number);
+                    data.Parameters.AddWithValue("@id", id);
+                    data.ExecuteNonQuery ();
+                
+                }
+
+                using (MySqlCommand data = new MySqlCommand(cityX, conn))
+                {
+                    data.Parameters.AddWithValue("@city", city);
+                    data.Parameters.AddWithValue("@id", id);
+                    data.ExecuteNonQuery();
+
+                }
+
+                using (MySqlCommand data = new MySqlCommand(countryX, conn))
+                {
+                    data.Parameters.AddWithValue("@country", country);
+                    data.Parameters.AddWithValue("@id", id);
+                    data.ExecuteNonQuery();
+
+                }
+
+
+
+
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         public static void CustomerAdd(string name, string address, string number, string city, string country)
         {
             try
@@ -185,119 +242,6 @@ namespace Software_2_Rykeem.Database
 
 
         }
-
-        //public static void DatabaseRelationship()
-        //{
-        //    try
-        //    { //Adding ID to required database tables
-        //        //string sql1 = "ALTER TABLE customer MODIFY COLUMN customerId INT NOT NULL";
-        //        string sql2 = "ALTER TABLE address ADD COLUMN customerId INT";
-        //        string sql3 = "ALTER TABLE city ADD COLUMN customerId INT";
-        //        string sql4 = "ALTER TABLE country ADD COLUMN customerId INT";
-
-
-
-        //        //using (MySqlCommand command1 = new MySqlCommand(sql1, conn))
-        //        //{
-                   
-        //        //    command1.ExecuteNonQuery();
-        //        //}
-               
-
-
-        //        using (MySqlCommand command2 = new MySqlCommand(sql2, conn))
-        //        {
-                    
-        //            command2.ExecuteNonQuery();
-        //        };
-
-
-
-        //        using (MySqlCommand command3 = new MySqlCommand(sql3, conn))
-        //        {
-        //            command3.ExecuteNonQuery();
-        //        };
-
-
-
-        //        using (MySqlCommand command4 = new MySqlCommand(sql4, conn))
-        //        {
-                   
-        //            command4.ExecuteNonQuery();
-        //        };
-
-
-        //        //Connecting all IDs or making them the same across all tables for each row 
-
-        //        string sql5 = @"UPDATE address ad
-        //                        JOIN customer c ON ad.addressId = c.addressId 
-        //                        SET ad.customerId = c.customerId "; // updates addressID is based on customer ID 
-        //        string sql6 = @"UPDATE city ct
-        //                        JOIN address ad ON ct.cityId = ad.cityId
-        //                        SET ct.customerId = ad.customerId "; // cityID based on addressID
-        //        string sql7 = @"UPDATE country co
-        //                        JOIN city ct ON co.countryId = ct.countryId
-        //                        SET co.customerId = ct.customerId "; //countryID based on cityID
-
-        //        using (MySqlCommand command5 = new MySqlCommand(sql5, conn))
-        //        {
-
-        //            command5.ExecuteNonQuery();
-        //        }
-
-
-
-        //        using (MySqlCommand command6 = new MySqlCommand(sql6, conn))
-        //        {
-
-        //            command6.ExecuteNonQuery();
-        //        };
-
-
-
-        //        using (MySqlCommand command7 = new MySqlCommand(sql7, conn))
-        //        {
-        //            command7.ExecuteNonQuery();
-        //        };
-
-
-        //        //adding foreign keys Makes sure that table wont be filled without the ID 
-        //        string sql8 = @"ALTER TABLE address ADD CONSTRAINT address_Id FOREIGN KEY (customerId) REFERENCES customer(customerId)";
-        //        string sql9 = @"ALTER TABLE city ADD CONSTRAINT city_Id FOREIGN KEY (customerId) REFERENCES customer(customerId)";
-        //        string sql10 = @"ALTER TABLE country ADD CONSTRAINT country_Id FOREIGN KEY (customerId) REFERENCES customer(customerId)";
-
-
-
-
-        //        using (MySqlCommand command8 = new MySqlCommand(sql8, conn))
-        //        {
-
-        //            command8.ExecuteNonQuery();
-        //        }
-
-
-
-        //        using (MySqlCommand command9 = new MySqlCommand(sql9, conn))
-        //        {
-
-        //            command9.ExecuteNonQuery();
-        //        };
-
-
-
-        //        using (MySqlCommand command10 = new MySqlCommand(sql10, conn))
-        //        {
-        //            command10.ExecuteNonQuery();
-        //        };
-        //    }
-
-
-        //    catch (MySqlException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-
-        //}
 
     }
 }

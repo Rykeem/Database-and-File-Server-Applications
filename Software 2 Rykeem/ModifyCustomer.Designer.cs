@@ -40,8 +40,8 @@
             this.cityLB2 = new System.Windows.Forms.Label();
             this.addressLB2 = new System.Windows.Forms.Label();
             this.nameLB2 = new System.Windows.Forms.Label();
-            this.IDTB = new System.Windows.Forms.TextBox();
             this.IDLB = new System.Windows.Forms.Label();
+            this.IDTB = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // SaveB2
@@ -70,6 +70,7 @@
             this.countryTB2.Name = "countryTB2";
             this.countryTB2.Size = new System.Drawing.Size(100, 20);
             this.countryTB2.TabIndex = 21;
+            this.countryTB2.TextChanged += new System.EventHandler(this.countryTB2_TextChanged);
             // 
             // cityTB2
             // 
@@ -77,6 +78,7 @@
             this.cityTB2.Name = "cityTB2";
             this.cityTB2.Size = new System.Drawing.Size(100, 20);
             this.cityTB2.TabIndex = 20;
+            this.cityTB2.TextChanged += new System.EventHandler(this.cityTB2_TextChanged);
             // 
             // numberTB2
             // 
@@ -84,6 +86,7 @@
             this.numberTB2.Name = "numberTB2";
             this.numberTB2.Size = new System.Drawing.Size(100, 20);
             this.numberTB2.TabIndex = 19;
+            this.numberTB2.TextChanged += new System.EventHandler(this.numberTB2_TextChanged);
             // 
             // addressTB2
             // 
@@ -91,6 +94,7 @@
             this.addressTB2.Name = "addressTB2";
             this.addressTB2.Size = new System.Drawing.Size(100, 20);
             this.addressTB2.TabIndex = 18;
+            this.addressTB2.TextChanged += new System.EventHandler(this.addressTB2_TextChanged);
             // 
             // nameTB2
             // 
@@ -98,6 +102,7 @@
             this.nameTB2.Name = "nameTB2";
             this.nameTB2.Size = new System.Drawing.Size(100, 20);
             this.nameTB2.TabIndex = 17;
+            this.nameTB2.TextChanged += new System.EventHandler(this.nameTB2_TextChanged);
             // 
             // countryLB2
             // 
@@ -144,15 +149,6 @@
             this.nameLB2.TabIndex = 12;
             this.nameLB2.Text = "Name";
             // 
-            // IDTB
-            // 
-            this.IDTB.Location = new System.Drawing.Point(128, 53);
-            this.IDTB.Name = "IDTB";
-            this.IDTB.ReadOnly = true;
-            this.IDTB.Size = new System.Drawing.Size(100, 20);
-            this.IDTB.TabIndex = 25;
-            this.IDTB.TextChanged += new System.EventHandler(this.IDTB_TextChanged);
-            // 
             // IDLB
             // 
             this.IDLB.AutoSize = true;
@@ -161,6 +157,15 @@
             this.IDLB.Size = new System.Drawing.Size(18, 13);
             this.IDLB.TabIndex = 24;
             this.IDLB.Text = "ID";
+            // 
+            // IDTB
+            // 
+            this.IDTB.Location = new System.Drawing.Point(128, 53);
+            this.IDTB.Name = "IDTB";
+            this.IDTB.ReadOnly = true;
+            this.IDTB.Size = new System.Drawing.Size(100, 20);
+            this.IDTB.TabIndex = 25;
+            this.IDTB.TextChanged += new System.EventHandler(this.IDTB_TextChanged);
             // 
             // ModifyCustomer
             // 
@@ -202,7 +207,7 @@
         private System.Windows.Forms.Label cityLB2;
         private System.Windows.Forms.Label addressLB2;
         private System.Windows.Forms.Label nameLB2;
-        private System.Windows.Forms.TextBox IDTB;
         private System.Windows.Forms.Label IDLB;
+        private System.Windows.Forms.TextBox IDTB;
     }
 }

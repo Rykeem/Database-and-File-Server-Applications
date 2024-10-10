@@ -93,6 +93,7 @@
             this.nameTB1.Name = "nameTB1";
             this.nameTB1.Size = new System.Drawing.Size(100, 20);
             this.nameTB1.TabIndex = 5;
+            this.nameTB1.TextChanged += new System.EventHandler(this.nameTB1_TextChanged);
             // 
             // addressTB1
             // 
@@ -100,6 +101,7 @@
             this.addressTB1.Name = "addressTB1";
             this.addressTB1.Size = new System.Drawing.Size(100, 20);
             this.addressTB1.TabIndex = 6;
+            this.addressTB1.TextChanged += new System.EventHandler(this.addressTB1_TextChanged);
             // 
             // numberTB1
             // 
@@ -107,6 +109,7 @@
             this.numberTB1.Name = "numberTB1";
             this.numberTB1.Size = new System.Drawing.Size(100, 20);
             this.numberTB1.TabIndex = 7;
+            this.numberTB1.TextChanged += new System.EventHandler(this.numberTB1_TextChanged);
             // 
             // cityTB1
             // 
@@ -114,6 +117,7 @@
             this.cityTB1.Name = "cityTB1";
             this.cityTB1.Size = new System.Drawing.Size(100, 20);
             this.cityTB1.TabIndex = 8;
+            this.cityTB1.TextChanged += new System.EventHandler(this.cityTB1_TextChanged);
             // 
             // countryTB1
             // 
@@ -121,6 +125,7 @@
             this.countryTB1.Name = "countryTB1";
             this.countryTB1.Size = new System.Drawing.Size(100, 20);
             this.countryTB1.TabIndex = 9;
+            this.countryTB1.TextChanged += new System.EventHandler(this.countryTB1_TextChanged);
             // 
             // CancelB1
             // 
@@ -161,7 +166,6 @@
             this.Controls.Add(this.nameLB1);
             this.Name = "AddCustomer";
             this.Text = "AddCustomer";
-            this.Load += new System.EventHandler(this.AddCustomer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

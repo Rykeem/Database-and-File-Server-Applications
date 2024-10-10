@@ -15,11 +15,16 @@ namespace Software_2_Rykeem
     {
         
         private DataGridView datagrid;
-        public ModifyCustomer(string id, string name, string address, string phone, string city, string country, DataGridView data)
+        private string customerid;
+        private string addressid;
+        private string cityid;
+        private string countryid;
+        
+        public ModifyCustomer(string customerId, string addressId, string cityId, string countryId, string name, string address, string phone, string city, string country, DataGridView data)
         {
             InitializeComponent();
 
-            IDTB.Text = id;
+            IDTB.Text = customerId;
             nameTB2.Text = name;
             addressTB2.Text = address;
             numberTB2.Text = phone;
@@ -28,7 +33,11 @@ namespace Software_2_Rykeem
 
 
             datagrid = data;
-
+            string customerid = customerId;
+            string addressid = addressId;
+            string cityid = cityId;
+            string countryid = countryId;
+             
         }
 
         private void IDTB_TextChanged(object sender, EventArgs e)
@@ -48,7 +57,8 @@ namespace Software_2_Rykeem
 
 
 
-            Connection.ModifyCustomer(IDTB.Text, nameTB2.Text, addressTB2.Text, numberTB2.Text,cityTB2.Text, countryTB2.Text);
+            Connection.ModifyCustomer(IDTB.Text, addressid, cityid, countryid,  nameTB2.Text, addressTB2.Text, numberTB2.Text, cityTB2.Text, countryTB2.Text);
+
             Connection.CustomerDatabase(datagrid);
             Customer.Instance.Show();
             this.Close();

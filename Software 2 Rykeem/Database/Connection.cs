@@ -81,7 +81,7 @@ namespace Software_2_Rykeem.Database
         {
             try
             {
-                string sql = @"SELECT customerId, customerName, address, phone, city, country
+                string sql = @"SELECT customerId,address.addressId,city.cityId,country.countryId, customerName, address, phone, city, country
                     FROM address, customer , city, country
                     WHERE  address.addressId = customer.addressId AND address.cityId = city.cityId AND city.countryId = country.countryId ";
 
@@ -96,7 +96,7 @@ namespace Software_2_Rykeem.Database
                 MessageBox.Show(ex.Message);
             }
         }
-        public static void ModifyCustomer(string id, string name, string address, string number, string city, string country)
+        public static void ModifyCustomer(string customerid ,string addressid  ,string cityid, string countryid, string name, string address, string number, string city, string country)
         {
             try
             {
@@ -104,16 +104,16 @@ namespace Software_2_Rykeem.Database
 
 
 
-                string customer = @"UPDATE customer SET customerName = @name WHERE customerId = @id"; // correct
-                string addressX = @"UPDATE address JOIN customer ON address.addressId = customer.addressId SET address = @address, phone = @number WHERE customer.customerId = @id"; //correct
-                string cityX = @"UPDATE city JOIN address ON city.cityId = address.cityId JOIN customer ON address.addressId = customer.addressId SET city.city = @city WHERE customer.customerId = @id"; //correct 
-                string countryX = @"UPDATE country JOIN city ON country.countryId = city.countryId JOIN address ON city.cityId = address.cityId JOIN customer ON address.addressId = customer.addressId SET country.country = @country WHERE customer.customerId = @id "; //correct
+                string customer = @"UPDATE customer SET customerName = @name WHERE customerId = @customerid"; 
+                string addressX = @"UPDATE address SET address.address = @address, phone = @number WHERE address.addressId = @addressid"; 
+                string cityX = @"UPDATE city SET city.city = @city WHERE city.cityId = @cityid"; 
+                string countryX = @"UPDATE country SET country.country = @country WHERE country.countryId = @countryid "; 
 
 
                 using (MySqlCommand data = new MySqlCommand(customer, conn))
                 {
                     data.Parameters.AddWithValue("@name", name);
-                    data.Parameters.AddWithValue("@id", id);
+                    data.Parameters.AddWithValue("@customerId", customerid);
                     data.ExecuteNonQuery();
 
                 }
@@ -123,7 +123,7 @@ namespace Software_2_Rykeem.Database
                 {
                     data.Parameters.AddWithValue("@address", address);
                     data.Parameters.AddWithValue("@number", number);
-                    data.Parameters.AddWithValue("@id", id);
+                    data.Parameters.AddWithValue("@addressId", addressid);
                     data.ExecuteNonQuery ();
                 
                 }
@@ -131,7 +131,7 @@ namespace Software_2_Rykeem.Database
                 using (MySqlCommand data = new MySqlCommand(cityX, conn))
                 {
                     data.Parameters.AddWithValue("@city", city);
-                    data.Parameters.AddWithValue("@id", id);
+                    data.Parameters.AddWithValue("@cityId", cityid);
                     data.ExecuteNonQuery();
 
                 }
@@ -139,7 +139,7 @@ namespace Software_2_Rykeem.Database
                 using (MySqlCommand data = new MySqlCommand(countryX, conn))
                 {
                     data.Parameters.AddWithValue("@country", country);
-                    data.Parameters.AddWithValue("@id", id);
+                    data.Parameters.AddWithValue("@countryId", countryid);
                     data.ExecuteNonQuery();
 
                 }
@@ -154,6 +154,71 @@ namespace Software_2_Rykeem.Database
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public static void DeleteCustomer(string customerid, string addressid, string cityid, string countryid, string name, string address, string number, string city, string country)
+        {
+
+            
+
+
+            try
+            {
+                string customer = @"DELETE FROM customer  WHERE customerId = @customerid";
+                string addressX = @"DELETE FROM address WHERE addressId = @addressid;";
+                string cityX = @"DELETE FROM city WHERE cityId = @cityid";
+                string countryX = @"DELETE FROM country WHERE countryId = @countryid";
+
+
+
+
+
+
+
+
+                using (MySqlCommand data = new MySqlCommand(customer, conn))//1
+                {
+
+                    data.Parameters.AddWithValue("@customerId", customerid);
+                    data.ExecuteNonQuery();
+
+                }
+
+
+                using (MySqlCommand data = new MySqlCommand(addressX, conn))//2
+                {
+
+                    data.Parameters.AddWithValue("@addressId", addressid);
+                    data.ExecuteNonQuery();
+
+                }
+
+                using (MySqlCommand data = new MySqlCommand(cityX, conn)) //3
+                {
+
+                    data.Parameters.AddWithValue("@cityId", cityid);
+                    data.ExecuteNonQuery();
+
+                }
+
+                using (MySqlCommand data = new MySqlCommand(countryX, conn)) // 4
+                {
+
+                    data.Parameters.AddWithValue("@countryId", countryid);
+                    data.ExecuteNonQuery();
+                }
+
+
+
+
+
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
         public static void CustomerAdd(string name, string address, string number, string city, string country)
         {
             try
@@ -165,7 +230,7 @@ namespace Software_2_Rykeem.Database
                
 
 
-                using (MySqlCommand command4 = new MySqlCommand(sql4, conn)) // starting with Country because its independent 
+                using (MySqlCommand command4 = new MySqlCommand(sql4, conn)) 
                 {
                     command4.Parameters.AddWithValue("@country", country); //4
                     command4.ExecuteNonQuery();

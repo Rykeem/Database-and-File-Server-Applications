@@ -34,7 +34,16 @@
             this.deleteButton = new System.Windows.Forms.Button();
             this.customerLB = new System.Windows.Forms.Label();
             this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
+            this.deleteButton2 = new System.Windows.Forms.Button();
+            this.modifyButton2 = new System.Windows.Forms.Button();
+            this.addButton2 = new System.Windows.Forms.Button();
+            this.AppointmentDGV = new System.Windows.Forms.DataGridView();
+            this.AppointmentLB = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AppointmentDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // CustomerDGV
@@ -96,11 +105,101 @@
             this.mySqlDataAdapter1.SelectCommand = null;
             this.mySqlDataAdapter1.UpdateCommand = null;
             // 
+            // deleteButton2
+            // 
+            this.deleteButton2.Location = new System.Drawing.Point(290, 776);
+            this.deleteButton2.Name = "deleteButton2";
+            this.deleteButton2.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton2.TabIndex = 8;
+            this.deleteButton2.Text = "Delete";
+            this.deleteButton2.UseVisualStyleBackColor = true;
+            // 
+            // modifyButton2
+            // 
+            this.modifyButton2.Location = new System.Drawing.Point(177, 776);
+            this.modifyButton2.Name = "modifyButton2";
+            this.modifyButton2.Size = new System.Drawing.Size(75, 23);
+            this.modifyButton2.TabIndex = 7;
+            this.modifyButton2.Text = "Modify";
+            this.modifyButton2.UseVisualStyleBackColor = true;
+            // 
+            // addButton2
+            // 
+            this.addButton2.Location = new System.Drawing.Point(63, 776);
+            this.addButton2.Name = "addButton2";
+            this.addButton2.Size = new System.Drawing.Size(75, 23);
+            this.addButton2.TabIndex = 6;
+            this.addButton2.Text = "Add";
+            this.addButton2.UseVisualStyleBackColor = true;
+            this.addButton2.Click += new System.EventHandler(this.addButton2_Click);
+            // 
+            // AppointmentDGV
+            // 
+            this.AppointmentDGV.AllowUserToAddRows = false;
+            this.AppointmentDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AppointmentDGV.Location = new System.Drawing.Point(63, 542);
+            this.AppointmentDGV.MultiSelect = false;
+            this.AppointmentDGV.Name = "AppointmentDGV";
+            this.AppointmentDGV.ReadOnly = true;
+            this.AppointmentDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.AppointmentDGV.Size = new System.Drawing.Size(567, 193);
+            this.AppointmentDGV.TabIndex = 5;
+            // 
+            // AppointmentLB
+            // 
+            this.AppointmentLB.AutoSize = true;
+            this.AppointmentLB.Location = new System.Drawing.Point(60, 462);
+            this.AppointmentLB.Name = "AppointmentLB";
+            this.AppointmentLB.Size = new System.Drawing.Size(71, 13);
+            this.AppointmentLB.TabIndex = 9;
+            this.AppointmentLB.Text = "Appointments";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(274, 462);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(91, 17);
+            this.radioButton1.TabIndex = 10;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Current Week";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(401, 462);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(92, 17);
+            this.radioButton2.TabIndex = 11;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Current Month";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(520, 462);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(97, 17);
+            this.radioButton3.TabIndex = 12;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "All Apointments";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
             // Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(765, 824);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.AppointmentLB);
+            this.Controls.Add(this.deleteButton2);
+            this.Controls.Add(this.modifyButton2);
+            this.Controls.Add(this.addButton2);
+            this.Controls.Add(this.AppointmentDGV);
             this.Controls.Add(this.customerLB);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.modifyButton);
@@ -109,6 +208,7 @@
             this.Name = "Customer";
             this.Load += new System.EventHandler(this.Customer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AppointmentDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,5 +222,13 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Label customerLB;
         private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter1;
+        private System.Windows.Forms.Button deleteButton2;
+        private System.Windows.Forms.Button modifyButton2;
+        private System.Windows.Forms.Button addButton2;
+        private System.Windows.Forms.DataGridView AppointmentDGV;
+        private System.Windows.Forms.Label AppointmentLB;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
     }
 }

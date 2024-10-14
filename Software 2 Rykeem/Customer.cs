@@ -24,7 +24,7 @@ namespace Software_2_Rykeem
         {
             
             Connection.CustomerDatabase(CustomerDGV);
-            
+            Connection.AppointmentDatabase(AppointmentDGV);
             
         }
 
@@ -116,6 +116,12 @@ namespace Software_2_Rykeem
 
 
 
+        }
+
+        private void addButton2_Click(object sender, EventArgs e)
+        {
+            AddAppointment addAppointment = new AddAppointment(AppointmentDGV);
+            addAppointment.Show();
         }
     }
 }

@@ -96,6 +96,72 @@ namespace Software_2_Rykeem.Database
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public static void AppointmentDatabase(DataGridView datagrid)
+        {
+            try
+            {
+                string sql = @"SELECT appointmentId, appointment.customerId, userId, appointment.type, appointment.start, appointment.end 
+                              FROM appointment, customer 
+                              WHERE customer.customerId = appointment.customerId";
+
+                MySqlDataAdapter data = new MySqlDataAdapter(sql, conn);
+                DataTable dataTable = new DataTable();
+                data.Fill(dataTable);
+                datagrid.DataSource = dataTable;
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public static void UserIDComboBox(ComboBox comboBox)
+        {
+            try
+            {
+                string sql = @"SELECT userId FROM user";
+                using (MySqlCommand datax = new MySqlCommand(sql, conn))
+                {
+                    using (MySqlDataAdapter data = new MySqlDataAdapter(sql, conn))
+                    {
+                        DataTable dataTable = new DataTable();
+                        data.Fill(dataTable);
+                        comboBox.DataSource = dataTable;
+                        comboBox.DisplayMember = "userId";
+
+
+                    } 
+                }
+            }
+
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public static void CustomerIDComboBox(ComboBox comboBox)
+        {
+            try
+            {
+                string sql = @"SELECT customerId FROM customer";
+                using (MySqlCommand datax = new MySqlCommand(sql, conn))
+                {
+                    using (MySqlDataAdapter data = new MySqlDataAdapter(sql, conn))
+                    {
+                        DataTable dataTable = new DataTable();
+                        data.Fill(dataTable);
+                        comboBox.DataSource = dataTable;
+                        comboBox.DisplayMember = "customerId";
+                    }
+                }
+            }
+
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         public static void ModifyCustomer(string customerid ,string addressid  ,string cityid, string countryid, string name, string address, string number, string city, string country)
         {
             try
@@ -219,7 +285,31 @@ namespace Software_2_Rykeem.Database
             }
 
         }
-        public static void CustomerAdd(string name, string address, string number, string city, string country)
+        public static void AppointmentAdd(string customerId, string userId, string type, DateTime start, DateTime end)
+        {
+            try
+            {
+                string sql = @"INSERT INTO appointment(customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy)
+                               VALUES(@customerId,@userId,'not needed', 'not needed', 'not needed','not needed',@type,'not needed',@start,@end,NOW(),'test',NOW(),'test')";
+
+
+                using (MySqlCommand command = new MySqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("@customerId",customerId);
+                    command.Parameters.AddWithValue("@userId", userId);
+                    command.Parameters.AddWithValue("@type", type);
+                    command.Parameters.AddWithValue("@start", start);
+                    command.Parameters.AddWithValue("@end", end);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+            public static void CustomerAdd(string name, string address, string number, string city, string country)
         {
             try
             {

@@ -27,7 +27,7 @@ namespace Software_2_Rykeem.Database
 
                 //opens the connection
                 conn.Open();
-                MessageBox.Show("Connection Successfull");
+                //MessageBox.Show("Connection Successfull");
             }
             catch (MySqlException ex)
             {
@@ -85,10 +85,11 @@ namespace Software_2_Rykeem.Database
                     FROM address, customer , city, country
                     WHERE  address.addressId = customer.addressId AND address.cityId = city.cityId AND city.countryId = country.countryId ";
 
-               MySqlDataAdapter data = new MySqlDataAdapter(sql, conn);
+                MySqlDataAdapter data = new MySqlDataAdapter(sql, conn);
                 DataTable dataTable = new DataTable();
                 data.Fill(dataTable);
                 datagrid.DataSource = dataTable;
+                datagrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             }
             catch (MySqlException ex)
@@ -109,6 +110,7 @@ namespace Software_2_Rykeem.Database
                 DataTable dataTable = new DataTable();
                 data.Fill(dataTable);
                 datagrid.DataSource = dataTable;
+                datagrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             }
             catch (MySqlException ex)
@@ -131,7 +133,7 @@ namespace Software_2_Rykeem.Database
                         comboBox.DisplayMember = "userId";
 
 
-                    } 
+                    }
                 }
             }
 
@@ -140,6 +142,28 @@ namespace Software_2_Rykeem.Database
                 MessageBox.Show(ex.Message);
             }
         }
+        //public static void AppointmentIDComboBox(ComboBox comboBox)
+        //{
+        //    try
+        //    {
+        //        string sql = @"SELECT appointmentId FROM appointment";
+        //        using (MySqlCommand datax = new MySqlCommand(sql, conn))
+        //        {
+        //            using (MySqlDataAdapter data = new MySqlDataAdapter(sql, conn))
+        //            {
+        //                DataTable dataTable = new DataTable();
+        //                data.Fill(dataTable);
+        //                comboBox.DataSource = dataTable;
+        //                comboBox.DisplayMember = "appointmentId";
+        //            }
+        //        }
+        //    }
+
+        //    catch (MySqlException ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
         public static void CustomerIDComboBox(ComboBox comboBox)
         {
             try
@@ -162,18 +186,41 @@ namespace Software_2_Rykeem.Database
                 MessageBox.Show(ex.Message);
             }
         }
-        public static void ModifyCustomer(string customerid ,string addressid  ,string cityid, string countryid, string name, string address, string number, string city, string country)
+        public static void ModifyAppointment(string appointmentId, string customerId, string userId, string type, DateTime start, DateTime end)
         {
             try
             {
-              
+                string sql = "UPDATE appointment SET customerId = @customerId, userId = @userId, type = @type, start = @start, end = @end WHERE appointmentId = @appointmentId";
+                using (MySqlCommand data = new MySqlCommand(sql, conn))
+                {
+                    data.Parameters.AddWithValue("appointmentId", appointmentId);
+                    data.Parameters.AddWithValue("@customerId", customerId);
+                    data.Parameters.AddWithValue("@userId", userId);
+                    data.Parameters.AddWithValue("@type", type);
+                    data.Parameters.AddWithValue("@start", start);
+                    data.Parameters.AddWithValue("@end", end);
+                    data.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+        public static void ModifyCustomer(string customerid, string addressid, string cityid, string countryid, string name, string address, string number, string city, string country)
+        {
+            try
+            {
 
 
 
-                string customer = @"UPDATE customer SET customerName = @name WHERE customerId = @customerid"; 
-                string addressX = @"UPDATE address SET address.address = @address, phone = @number WHERE address.addressId = @addressid"; 
-                string cityX = @"UPDATE city SET city.city = @city WHERE city.cityId = @cityid"; 
-                string countryX = @"UPDATE country SET country.country = @country WHERE country.countryId = @countryid "; 
+
+                string customer = @"UPDATE customer SET customerName = @name WHERE customerId = @customerid";
+                string addressX = @"UPDATE address SET address.address = @address, phone = @number WHERE address.addressId = @addressid";
+                string cityX = @"UPDATE city SET city.city = @city WHERE city.cityId = @cityid";
+                string countryX = @"UPDATE country SET country.country = @country WHERE country.countryId = @countryid ";
 
 
                 using (MySqlCommand data = new MySqlCommand(customer, conn))
@@ -183,15 +230,15 @@ namespace Software_2_Rykeem.Database
                     data.ExecuteNonQuery();
 
                 }
-                
+
 
                 using (MySqlCommand data = new MySqlCommand(addressX, conn))
                 {
                     data.Parameters.AddWithValue("@address", address);
                     data.Parameters.AddWithValue("@number", number);
                     data.Parameters.AddWithValue("@addressId", addressid);
-                    data.ExecuteNonQuery ();
-                
+                    data.ExecuteNonQuery();
+
                 }
 
                 using (MySqlCommand data = new MySqlCommand(cityX, conn))
@@ -221,10 +268,31 @@ namespace Software_2_Rykeem.Database
             }
         }
 
+
+        public static void DeleteAppointment(string appointmentId)
+        {
+            try
+            {
+                string sql = "DELETE FROM appointment WHERE appointmentId = @appointmentId";
+                using (MySqlCommand data = new MySqlCommand(sql, conn))
+                {
+                    data.Parameters.AddWithValue("appointmentId", appointmentId);
+                    data.ExecuteNonQuery();
+                }
+
+
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
         public static void DeleteCustomer(string customerid, string addressid, string cityid, string countryid, string name, string address, string number, string city, string country)
         {
 
-            
+
 
 
             try
@@ -295,7 +363,7 @@ namespace Software_2_Rykeem.Database
 
                 using (MySqlCommand command = new MySqlCommand(sql, conn))
                 {
-                    command.Parameters.AddWithValue("@customerId",customerId);
+                    command.Parameters.AddWithValue("@customerId", customerId);
                     command.Parameters.AddWithValue("@userId", userId);
                     command.Parameters.AddWithValue("@type", type);
                     command.Parameters.AddWithValue("@start", start);
@@ -309,18 +377,18 @@ namespace Software_2_Rykeem.Database
             }
         }
 
-            public static void CustomerAdd(string name, string address, string number, string city, string country)
+        public static void CustomerAdd(string name, string address, string number, string city, string country)
         {
             try
             {
                 string sql1 = "INSERT INTO customer(customerName,addressId,active, createDate,createdBy,lastUpdate,lastUpdateBy) VALUES(@name,@addressId,1,NOW(),'test', NOW(),'test')";
                 string sql2 = "INSERT INTO address(address,address2,cityId, postalcode, phone, createDate,createdBy,lastUpdate,lastUpdateBy) VALUES(@address,'',@cityId,'11111', @number, NOW(),'test',NOW(),'test')";
-                string sql3 = "INSERT INTO city(city,countryId, createDate,createdBy,lastUpdate,lastUpdateBy) VALUES(@city,@countryId, NOW(), 'test', NOW(), 'test')";  
+                string sql3 = "INSERT INTO city(city,countryId, createDate,createdBy,lastUpdate,lastUpdateBy) VALUES(@city,@countryId, NOW(), 'test', NOW(), 'test')";
                 string sql4 = "INSERT INTO country(country, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES(@country, NOW(), 'test', NOW(), 'test')";
-               
 
 
-                using (MySqlCommand command4 = new MySqlCommand(sql4, conn)) 
+
+                using (MySqlCommand command4 = new MySqlCommand(sql4, conn))
                 {
                     command4.Parameters.AddWithValue("@country", country); //4
                     command4.ExecuteNonQuery();
@@ -349,7 +417,7 @@ namespace Software_2_Rykeem.Database
                     command3.ExecuteNonQuery();
                 };
 
-                using (MySqlCommand command3_5 = new MySqlCommand(CityId, conn)) 
+                using (MySqlCommand command3_5 = new MySqlCommand(CityId, conn))
                 {
                     cityId = Convert.ToInt32(command3_5.ExecuteScalar()); // gets city Id
                 }

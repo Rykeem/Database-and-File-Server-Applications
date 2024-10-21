@@ -22,10 +22,11 @@ namespace Software_2_Rykeem
 
         private void Customer_Load(object sender, EventArgs e)
         {
-            
+
             Connection.CustomerDatabase(CustomerDGV);
             Connection.AppointmentDatabase(AppointmentDGV);
-            
+            AppointmentDGV.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -52,20 +53,20 @@ namespace Software_2_Rykeem
             int index = CustomerDGV.CurrentCell.RowIndex;
 
 
-                string customerID = CustomerDGV.Rows[index].Cells[0].Value.ToString();//customerId
-                string addressID = CustomerDGV.Rows[index].Cells[1].Value.ToString();//address
-                string cityID = CustomerDGV.Rows[index].Cells[2].Value.ToString();//city
-                string countryID = CustomerDGV.Rows[index].Cells[3].Value.ToString();//country
+            string customerID = CustomerDGV.Rows[index].Cells[0].Value.ToString();//customerId
+            string addressID = CustomerDGV.Rows[index].Cells[1].Value.ToString();//address
+            string cityID = CustomerDGV.Rows[index].Cells[2].Value.ToString();//city
+            string countryID = CustomerDGV.Rows[index].Cells[3].Value.ToString();//country
 
 
-                string name = CustomerDGV.Rows[index].Cells[4].Value.ToString();
-                string address = CustomerDGV.Rows[index].Cells[5].Value.ToString();
-                string phone = CustomerDGV.Rows[index].Cells[6].Value.ToString();
-                string city = CustomerDGV.Rows[index].Cells[7].Value.ToString();
-                string country = CustomerDGV.Rows[index].Cells[8].Value.ToString();
+            string name = CustomerDGV.Rows[index].Cells[4].Value.ToString();
+            string address = CustomerDGV.Rows[index].Cells[5].Value.ToString();
+            string phone = CustomerDGV.Rows[index].Cells[6].Value.ToString();
+            string city = CustomerDGV.Rows[index].Cells[7].Value.ToString();
+            string country = CustomerDGV.Rows[index].Cells[8].Value.ToString();
 
             this.Hide();
-            ModifyCustomer modify = new ModifyCustomer(customerID,addressID,cityID,countryID, name, address, phone, city, country, CustomerDGV);
+            ModifyCustomer modify = new ModifyCustomer(customerID, addressID, cityID, countryID, name, address, phone, city, country, CustomerDGV);
             modify.Show();
 
 
@@ -75,8 +76,8 @@ namespace Software_2_Rykeem
 
 
 
-            
-            
+
+
 
         }
 
@@ -90,7 +91,7 @@ namespace Software_2_Rykeem
             int index = CustomerDGV.CurrentCell.RowIndex;
 
 
-            
+
 
 
 
@@ -109,7 +110,7 @@ namespace Software_2_Rykeem
             string country = CustomerDGV.Rows[index].Cells[8].Value.ToString();
 
 
-            Connection.DeleteCustomer(customerID,addressID,cityID,countryID,name,address, phone, city, country);
+            Connection.DeleteCustomer(customerID, addressID, cityID, countryID, name, address, phone, city, country);
             Connection.CustomerDatabase(CustomerDGV);
 
 
@@ -122,6 +123,52 @@ namespace Software_2_Rykeem
         {
             AddAppointment addAppointment = new AddAppointment(AppointmentDGV);
             addAppointment.Show();
+            this.Hide();
+        }
+
+        private void modifyButton2_Click(object sender, EventArgs e)
+        {
+
+            if (AppointmentDGV.CurrentRow == null || !AppointmentDGV.CurrentRow.Selected)
+            {
+                MessageBox.Show("No row has been selected.");
+                return;
+            }
+            int index = AppointmentDGV.CurrentCell.RowIndex;
+
+
+            string appointmentId = AppointmentDGV.Rows[index].Cells[0].Value.ToString();//appointmentId
+            string customerId = AppointmentDGV.Rows[index].Cells[1].Value.ToString();//customerId
+            string userId = AppointmentDGV.Rows[index].Cells[2].Value.ToString();//userId
+            string type = AppointmentDGV.Rows[index].Cells[3].Value.ToString();//type
+            DateTime start = (DateTime)AppointmentDGV.Rows[index].Cells[4].Value; // start time
+            DateTime end = (DateTime)AppointmentDGV.Rows[index].Cells[4].Value;// end time 
+
+
+
+
+
+            ModifyAppointment modifyAppointment = new ModifyAppointment(type, appointmentId, customerId, userId, start, end, AppointmentDGV);
+            modifyAppointment.Show();
+            this.Hide();
+        }
+
+
+
+        private void deleteButton2_Click_1(object sender, EventArgs e)
+        {
+            if (AppointmentDGV.CurrentRow == null || !AppointmentDGV.CurrentRow.Selected)
+            {
+                MessageBox.Show("No row has been selected.");
+                return;
+            }
+            int index = AppointmentDGV.CurrentCell.RowIndex;
+
+
+            string appointmentId = AppointmentDGV.Rows[index].Cells[0].Value.ToString();//appointmentId
+            Connection.DeleteAppointment(appointmentId);
+            Connection.AppointmentDatabase(AppointmentDGV);
         }
     }
 }
+

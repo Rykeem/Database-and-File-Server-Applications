@@ -47,6 +47,8 @@ namespace Software_2_Rykeem
         {
             Connection.AppointmentAdd(CustomerIDCB1.Text, UserIDCB1.Text, nameTB1.Text, dateTimePicker1.Value, dateTimePicker2.Value);
             Connection.AppointmentDatabase(dataXX);
+            this.Close();
+            Customer.Instance.Show();
         }
     }
 }

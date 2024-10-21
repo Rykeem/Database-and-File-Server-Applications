@@ -113,6 +113,7 @@
             this.deleteButton2.TabIndex = 8;
             this.deleteButton2.Text = "Delete";
             this.deleteButton2.UseVisualStyleBackColor = true;
+            this.deleteButton2.Click += new System.EventHandler(this.deleteButton2_Click_1);
             // 
             // modifyButton2
             // 
@@ -122,6 +123,7 @@
             this.modifyButton2.TabIndex = 7;
             this.modifyButton2.Text = "Modify";
             this.modifyButton2.UseVisualStyleBackColor = true;
+            this.modifyButton2.Click += new System.EventHandler(this.modifyButton2_Click);
             // 
             // addButton2
             // 

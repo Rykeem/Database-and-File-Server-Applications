@@ -67,20 +67,20 @@ namespace Software_2_Rykeem
                     }
                     else
                     {
-                        MessageBox.Show("Time has to be between 9AM and 5PM EST");
+                        MessageBox.Show("Time has to be between 9AM and 5PM EST Monday through Friday");
                     }
 
 
                 }
                 else
                 {
-                    MessageBox.Show("Time has to be between 9AM and 5PM EST");
+                    MessageBox.Show("Time has to be between 9AM and 5PM EST Monday through Friday");
                 }
 
             }
             else
             {
-                MessageBox.Show("The start time has to be before the end time");
+                MessageBox.Show("Time has to be between 9AM and 5PM EST Monday through Friday");
             }
 
         }

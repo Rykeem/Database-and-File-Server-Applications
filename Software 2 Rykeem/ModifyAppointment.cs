@@ -39,20 +39,15 @@ namespace Software_2_Rykeem
 
         private void SaveB1_Click(object sender, EventArgs e)
         {
-            
 
-            DateTime dateTime = dateTimePicker1.Value;
-
+            DateTime dateTime = dateTimePicker1.Value; //start time 
+            DateTime dateTime2 = dateTimePicker2.Value; // end time 
 
             TimeZoneInfo est = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            DateTime datetimeEST = TimeZoneInfo.ConvertTime(dateTime, TimeZoneInfo.Local, est);
-
-
-            DateTime dateTime2 = dateTimePicker2.Value;
-
-
             TimeZoneInfo est2 = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            DateTime datetimeEST2 = TimeZoneInfo.ConvertTime(dateTime2, TimeZoneInfo.Local, est2);
+
+            DateTime datetimeEST = TimeZoneInfo.ConvertTime(dateTime, TimeZoneInfo.Local, est); //start est 
+            DateTime datetimeEST2 = TimeZoneInfo.ConvertTime(dateTime2, TimeZoneInfo.Local, est2); // end est
 
             if (dateTime < dateTime2)
             {
@@ -60,28 +55,59 @@ namespace Software_2_Rykeem
                 {
                     if (datetimeEST.TimeOfDay >= new TimeSpan(9, 0, 0) && datetimeEST.TimeOfDay <= new TimeSpan(17, 0, 0) && datetimeEST2.TimeOfDay >= new TimeSpan(9, 0, 0) && datetimeEST2.TimeOfDay <= new TimeSpan(17, 0, 0))
                     {
-                        Connection.ModifyAppointment(AppointmentIDTB.Text, CustomerIDCB1.Text, UserIDCB1.Text, nameTB1.Text, dateTimePicker1.Value, dateTimePicker2.Value);
-                        Connection.AppointmentDatabase(dataX);
-                        this.Close();
-                        Customer.Instance.Show();
+                        bool boool = true;
+                        foreach (DataGridViewRow row in dataX.Rows)
+                        {
+                            DateTime startTime = Convert.ToDateTime(row.Cells["start"].Value); //start times
+                            DateTime endTime = Convert.ToDateTime(row.Cells["end"].Value); // end times
+
+
+                            DateTime startTimeEST = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Local, est); // Appointment time local time to est
+                            DateTime endTimeEST = TimeZoneInfo.ConvertTime(endTime, TimeZoneInfo.Local, est2); // Appointment time to est
+
+                            if (datetimeEST < endTimeEST && datetimeEST2 > startTimeEST)
+                            {
+                                MessageBox.Show("Your appointment cannot overlap with an existing one");
+                                boool = false;
+                                break;
+                            }
+                        }
+
+                        if (boool)
+                        {
+                            Connection.ModifyAppointment(AppointmentIDTB.Text, CustomerIDCB1.Text, UserIDCB1.Text, nameTB1.Text, dateTimePicker1.Value, dateTimePicker2.Value);
+                            Connection.AppointmentDatabase(dataX);
+                            this.Close();
+                            Customer.Instance.Show();
+
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Time has to be between 9AM and 5PM EST Monday through Friday");
+                        MessageBox.Show("The times must be between 9AM through 5PM EST");
                     }
 
 
                 }
                 else
                 {
-                    MessageBox.Show("Time has to be between 9AM and 5PM EST Monday through Friday");
+                    MessageBox.Show("The date has to be between Monday through Friday");
                 }
+
 
             }
             else
             {
-                MessageBox.Show("Time has to be between 9AM and 5PM EST Monday through Friday");
+                MessageBox.Show("Start time must be before end time");
             }
+
+
+
+
+
+
+
+
 
         }
 

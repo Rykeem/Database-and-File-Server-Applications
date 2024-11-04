@@ -76,6 +76,85 @@ namespace Software_2_Rykeem.Database
             }
         }
 
+        public static void Refresh(bool week, bool month, bool all, DataGridView datagrid) //workin
+        {
+            try
+            {
+                if (week)
+                {
+                    DateTime now = DateTime.Today;
+                    DateTime startOfWeek = now.AddDays(-(int)now.DayOfWeek + 1);
+                    DateTime endOfWeek = startOfWeek.AddDays(6);
+
+                    string thisweek = @"SELECT appointmentId, appointment.customerId, userId, appointment.type, appointment.start, appointment.end  
+                                        FROM appointment, customer 
+                                        WHERE customer.customerId = appointment.customerId 
+                                        AND appointment.start >= @startOfWeek 
+                                        AND appointment.end <= @endOfWeek";
+
+                    using (MySqlCommand data = new MySqlCommand(thisweek, conn))
+                    {
+                        data.Parameters.AddWithValue("@startOfWeek", startOfWeek);
+                        data.Parameters.AddWithValue("@endOfWeek", endOfWeek);
+                        
+
+                        MySqlDataAdapter datax = new MySqlDataAdapter(data);
+                        DataTable dataTable = new DataTable();
+                        datax.Fill(dataTable);
+
+                        datagrid.DataSource = dataTable;
+                        datagrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                    }
+
+                }
+                else if (month)
+                {
+                    DateTime now = DateTime.Today;
+                    DateTime startOfMonth = new DateTime(now.Year, now.Month, 1);
+                    DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
+
+                    string thismonth = @"SELECT appointmentId, appointment.customerId, userId, appointment.type, appointment.start, appointment.end  
+                                        FROM appointment, customer 
+                                        WHERE customer.customerId = appointment.customerId 
+                                        AND appointment.start >= @startOfMonth 
+                                        AND appointment.end <= @endOfMonth";
+
+                    using (MySqlCommand data = new MySqlCommand(thismonth, conn))
+                    {
+                        data.Parameters.AddWithValue("@startOfMonth", startOfMonth);
+                        data.Parameters.AddWithValue("@endOfMonth", endOfMonth);
+                        
+
+                        MySqlDataAdapter datax = new MySqlDataAdapter(data);
+                        DataTable dataTable = new DataTable();
+                        datax.Fill(dataTable);
+
+                        datagrid.DataSource = dataTable;
+                        datagrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                    }
+                }
+                else
+                {
+                    string sql = @"SELECT appointmentId, appointment.customerId, userId, appointment.type, appointment.start, appointment.end 
+                              FROM appointment, customer 
+                              WHERE customer.customerId = appointment.customerId";
+
+                    MySqlDataAdapter data = new MySqlDataAdapter(sql, conn);
+                    DataTable dataTable = new DataTable();
+                    data.Fill(dataTable);
+                    datagrid.DataSource = dataTable;
+                    datagrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                
+            }
+        }
+
+
+
 
         public static void CustomerDatabase(DataGridView datagrid)
         {
@@ -98,7 +177,7 @@ namespace Software_2_Rykeem.Database
             }
         }
 
-        public static void AppointmentDatabase(DataGridView datagrid)
+        public static void AppointmentDatabase(DataGridView datagrid) //working on 
         {
             try
             {
@@ -142,28 +221,7 @@ namespace Software_2_Rykeem.Database
                 MessageBox.Show(ex.Message);
             }
         }
-        //public static void AppointmentIDComboBox(ComboBox comboBox)
-        //{
-        //    try
-        //    {
-        //        string sql = @"SELECT appointmentId FROM appointment";
-        //        using (MySqlCommand datax = new MySqlCommand(sql, conn))
-        //        {
-        //            using (MySqlDataAdapter data = new MySqlDataAdapter(sql, conn))
-        //            {
-        //                DataTable dataTable = new DataTable();
-        //                data.Fill(dataTable);
-        //                comboBox.DataSource = dataTable;
-        //                comboBox.DisplayMember = "appointmentId";
-        //            }
-        //        }
-        //    }
-
-        //    catch (MySqlException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+        
         public static void CustomerIDComboBox(ComboBox comboBox)
         {
             try

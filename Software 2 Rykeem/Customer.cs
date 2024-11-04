@@ -1,4 +1,5 @@
-﻿using Software_2_Rykeem.Database;
+﻿using Org.BouncyCastle.Asn1.BC;
+using Software_2_Rykeem.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -168,6 +169,29 @@ namespace Software_2_Rykeem
             string appointmentId = AppointmentDGV.Rows[index].Cells[0].Value.ToString();//appointmentId
             Connection.DeleteAppointment(appointmentId);
             Connection.AppointmentDatabase(AppointmentDGV);
+        }
+
+        public void refresh()
+        {
+            bool week = radioButton1.Checked == true;
+            bool month = radioButton2.Checked == true;
+            bool year = radioButton3.Checked == true;
+            Connection.Refresh(week, month, year, AppointmentDGV);
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            refresh();
         }
     }
 }

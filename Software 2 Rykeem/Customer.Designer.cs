@@ -166,6 +166,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Current Week";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -177,6 +178,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Current Month";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -188,6 +190,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "All Apointments";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // Customer
             // 

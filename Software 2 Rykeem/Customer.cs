@@ -193,6 +193,11 @@ namespace Software_2_Rykeem
         {
             refresh();
         }
+
+        private void Customer_VisibleChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
     }
 }
 

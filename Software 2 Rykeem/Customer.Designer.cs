@@ -212,6 +212,7 @@
             this.Controls.Add(this.CustomerDGV);
             this.Name = "Customer";
             this.Load += new System.EventHandler(this.Customer_Load);
+            this.VisibleChanged += new System.EventHandler(this.Customer_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AppointmentDGV)).EndInit();
             this.ResumeLayout(false);

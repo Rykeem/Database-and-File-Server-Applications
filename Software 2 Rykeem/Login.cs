@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,9 @@ namespace Software_2_Rykeem
             string password = passwordTB.Text;
             int userId = Connection.GetUserID(userNameTB.Text, passwordTB.Text);
 
-
+            string currentTime = DateTime.Now.ToLocalTime().ToString("yyyy-MM-dd:HH:mm:ss tt");
+            string writtenText = $"{currentTime} - {userNameTB.Text}\n";
+            string filez = Path.Combine(Environment.CurrentDirectory, "Login_History.txt");
 
 
             if (languageCode == "en")
@@ -47,8 +50,28 @@ namespace Software_2_Rykeem
                 {
                     MessageBox.Show("Login Successfull");
                     Customer customer = new Customer(userId);
+
+                    
+
+                    try
+                    {
+                        using (StreamWriter file = new StreamWriter(filez, true))
+                        {
+                            file.WriteLine(writtenText);
+                        }
+                        MessageBox.Show($"File path: {filez}");
+
+                        MessageBox.Show("added");
+                    }
+                    catch (Exception ex)
+                    { 
+                        MessageBox.Show(ex.Message);
+
+                    }
+
                     customer.Show();
                     this.Hide();
+
                 }
                 else
                 {
@@ -61,6 +84,25 @@ namespace Software_2_Rykeem
                 {
                     MessageBox.Show("登录成功");
                     Customer customer = new Customer(userId);
+                    
+                    
+
+
+
+                    try
+                    {
+                        using (StreamWriter file = new StreamWriter(filez, true))
+                        {
+                            file.WriteLine(writtenText);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+
+
                     customer.Show();
                     this.Hide();
                 }

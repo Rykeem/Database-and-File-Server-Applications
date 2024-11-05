@@ -49,7 +49,34 @@ namespace Software_2_Rykeem.Database
                 MessageBox.Show(ex.Message);
             }
         }
+        public static int GetUserID(string username,string password)
+        {
+            int userId = 0;
+            try
+            {
+                string sql = "SELECT userId FROM user WHERE userName = @username AND password = @password";
+                MySqlCommand command = new MySqlCommand(sql, conn);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
 
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        userId = reader.GetInt32(0);
+                    }
+                }
+                
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            return userId;
+
+
+        }
 
         public static bool Login(string username, string password)
         {
@@ -62,6 +89,7 @@ namespace Software_2_Rykeem.Database
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)
+                       
                         return true;
                     else
                     {
@@ -75,8 +103,48 @@ namespace Software_2_Rykeem.Database
                 return false;
             }
         }
+        public static void Alert(int userId) //working
+        {
+           DateTime localtime = DateTime.Now;
+           DateTime currentTime = localtime.ToUniversalTime();
+           DateTime targetTime = currentTime.AddMinutes(15);
 
-        public static void Refresh(bool week, bool month, bool all, DataGridView datagrid) //workin
+
+            string sql = @"SELECT appointment.start
+                              FROM appointment 
+                              WHERE appointment.userId = @userId";
+
+            try
+            {
+
+
+                MySqlCommand command = new MySqlCommand(sql, conn); //execute the sql query 
+                {
+                    command.Parameters.AddWithValue("@userId", userId);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime start = reader.GetDateTime("start");
+
+                            if (start >= currentTime && start <= targetTime)
+                            {
+                                MessageBox.Show("You have an upcomming appointment within the next 15 minutes");
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
+        public static void Refresh(bool week, bool month, bool all, DataGridView datagrid) 
         {
 
             try

@@ -15,10 +15,12 @@ namespace Software_2_Rykeem
     public partial class Customer : Form
     {
         public static Customer Instance { get; set; }
-        public Customer()
+        public static int userIDX;
+        public Customer(int userID)
         {
             InitializeComponent();
             Instance = this;
+            userIDX = userID;
         }
 
         private void Customer_Load(object sender, EventArgs e)
@@ -28,6 +30,7 @@ namespace Software_2_Rykeem
             Connection.AppointmentDatabase(AppointmentDGV);
             AppointmentDGV.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             UserTime(AppointmentDGV);
+            Connection.Alert(userIDX);
 
         }
 

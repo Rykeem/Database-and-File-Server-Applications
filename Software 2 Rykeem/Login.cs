@@ -38,9 +38,9 @@ namespace Software_2_Rykeem
             string password = passwordTB.Text;
             int userId = Connection.GetUserID(userNameTB.Text, passwordTB.Text);
 
-            string currentTime = DateTime.Now.ToLocalTime().ToString("yyyy-MM-dd:HH:mm:ss tt");
+            string currentTime = DateTime.Now.ToLocalTime().ToString("yyyy-MM-dd:HH:mm tt");
             string writtenText = $"{currentTime} - {userNameTB.Text}\n";
-            string filez = Path.Combine(Environment.CurrentDirectory, "Login_History.txt");
+            string filez = Path.Combine(Application.StartupPath, "Login_History.txt");
 
 
             if (languageCode == "en")

@@ -24,6 +24,8 @@ namespace Software_2_Rykeem
             dateTimePicker2.CustomFormat = "yyyy-MM-dd hh:mm:ss tt";
             dateTimePicker1.MinDate = DateTime.Today;
             dateTimePicker2.MinDate = DateTime.Today;
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
             Connection.UserIDComboBox(UserIDCB1);
             Connection.CustomerIDComboBox(CustomerIDCB1);
             dataXX = data;
@@ -157,6 +159,11 @@ namespace Software_2_Rykeem
            
 
 
+
+        }
+
+        private void AddAppointment_Load(object sender, EventArgs e)
+        {
 
         }
     }

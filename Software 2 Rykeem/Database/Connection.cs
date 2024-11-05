@@ -78,6 +78,7 @@ namespace Software_2_Rykeem.Database
 
         public static void Refresh(bool week, bool month, bool all, DataGridView datagrid) //workin
         {
+
             try
             {
                 if (week)
@@ -142,6 +143,7 @@ namespace Software_2_Rykeem.Database
                     MySqlDataAdapter data = new MySqlDataAdapter(sql, conn);
                     DataTable dataTable = new DataTable();
                     data.Fill(dataTable);
+
                     datagrid.DataSource = dataTable;
                     datagrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 }
@@ -248,6 +250,10 @@ namespace Software_2_Rykeem.Database
         {
             try
             {
+
+                DateTime utcStartTime = start.ToUniversalTime(); //converts user input to UTC 
+                DateTime utcEndTime = end.ToUniversalTime(); // to store in the database
+
                 string sql = "UPDATE appointment SET customerId = @customerId, userId = @userId, type = @type, start = @start, end = @end WHERE appointmentId = @appointmentId";
                 using (MySqlCommand data = new MySqlCommand(sql, conn))
                 {
@@ -255,8 +261,8 @@ namespace Software_2_Rykeem.Database
                     data.Parameters.AddWithValue("@customerId", customerId);
                     data.Parameters.AddWithValue("@userId", userId);
                     data.Parameters.AddWithValue("@type", type);
-                    data.Parameters.AddWithValue("@start", start);
-                    data.Parameters.AddWithValue("@end", end);
+                    data.Parameters.AddWithValue("@start", utcStartTime);
+                    data.Parameters.AddWithValue("@end", utcEndTime);
                     data.ExecuteNonQuery();
                 }
             }
@@ -415,6 +421,9 @@ namespace Software_2_Rykeem.Database
         {
             try
             {
+                DateTime utcStartTime = start.ToUniversalTime(); //converts user input to UTC 
+                DateTime utcEndTime = end.ToUniversalTime(); // to store in the database 
+
                 string sql = @"INSERT INTO appointment(customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy)
                                VALUES(@customerId,@userId,'not needed', 'not needed', 'not needed','not needed',@type,'not needed',@start,@end,NOW(),'test',NOW(),'test')";
 
@@ -424,8 +433,8 @@ namespace Software_2_Rykeem.Database
                     command.Parameters.AddWithValue("@customerId", customerId);
                     command.Parameters.AddWithValue("@userId", userId);
                     command.Parameters.AddWithValue("@type", type);
-                    command.Parameters.AddWithValue("@start", start);
-                    command.Parameters.AddWithValue("@end", end);
+                    command.Parameters.AddWithValue("@start", utcStartTime);
+                    command.Parameters.AddWithValue("@end", utcEndTime);
                     command.ExecuteNonQuery();
                 }
             }

@@ -168,6 +168,7 @@
             this.Controls.Add(this.typeLB1);
             this.Name = "AddAppointment";
             this.Text = "AddAppointment";
+            this.Load += new System.EventHandler(this.AddAppointment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

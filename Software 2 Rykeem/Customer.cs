@@ -27,6 +27,7 @@ namespace Software_2_Rykeem
             Connection.CustomerDatabase(CustomerDGV);
             Connection.AppointmentDatabase(AppointmentDGV);
             AppointmentDGV.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            UserTime(AppointmentDGV);
 
         }
 
@@ -143,7 +144,7 @@ namespace Software_2_Rykeem
             string userId = AppointmentDGV.Rows[index].Cells[2].Value.ToString();//userId
             string type = AppointmentDGV.Rows[index].Cells[3].Value.ToString();//type
             DateTime start = (DateTime)AppointmentDGV.Rows[index].Cells[4].Value; // start time
-            DateTime end = (DateTime)AppointmentDGV.Rows[index].Cells[4].Value;// end time 
+            DateTime end = (DateTime)AppointmentDGV.Rows[index].Cells[5].Value;// end time 
 
 
 
@@ -178,25 +179,45 @@ namespace Software_2_Rykeem
             bool year = radioButton3.Checked == true;
             Connection.Refresh(week, month, year, AppointmentDGV);
         }
+        public void UserTime(DataGridView data)
+        {
+            foreach (DataGridViewRow row in data.Rows)
+            {
+                DateTime utcStart = (DateTime)row.Cells["start"].Value;
+                DateTime utcEnd = (DateTime)row.Cells["end"].Value;
+
+                row.Cells["start"].Value = utcStart.ToLocalTime();
+                row.Cells["end"].Value = utcEnd.ToLocalTime();
+               
+            }
+            data.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             refresh();
+            UserTime(AppointmentDGV);
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             refresh();
+            UserTime(AppointmentDGV);
+
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             refresh();
+            UserTime(AppointmentDGV);
+            
         }
 
         private void Customer_VisibleChanged(object sender, EventArgs e)
         {
             refresh();
+            UserTime(AppointmentDGV);
+
         }
     }
 }

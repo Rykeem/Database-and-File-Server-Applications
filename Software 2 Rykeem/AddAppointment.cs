@@ -29,6 +29,7 @@ namespace Software_2_Rykeem
             Connection.UserIDComboBox(UserIDCB1);
             Connection.CustomerIDComboBox(CustomerIDCB1);
             dataXX = data;
+            SaveB1.Enabled = false;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -99,7 +100,8 @@ namespace Software_2_Rykeem
 
             DateTime datetimeEST = TimeZoneInfo.ConvertTime(dateTime, TimeZoneInfo.Local, est); //start est 
             DateTime datetimeEST2 = TimeZoneInfo.ConvertTime(dateTime2, TimeZoneInfo.Local, est2); // end est
-
+            
+           
             if (dateTime < dateTime2)
             {
                 if (datetimeEST.DayOfWeek >= DayOfWeek.Monday && datetimeEST.DayOfWeek <= DayOfWeek.Friday && datetimeEST2.DayOfWeek >= DayOfWeek.Monday && datetimeEST2.DayOfWeek <= DayOfWeek.Friday)
@@ -123,6 +125,7 @@ namespace Software_2_Rykeem
                                 break;
                             }
                         }
+
 
                         if (boool)
                         {
@@ -162,9 +165,28 @@ namespace Software_2_Rykeem
 
         }
 
+        private void SaveButton()
+        {
+            SaveB1.Enabled = nameTB1.BackColor == Color.White ? true : false;
+        }
+
         private void AddAppointment_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void nameTB1_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(nameTB1.Text) || int.TryParse(nameTB1.Text, out int name))
+            {
+                nameTB1.BackColor = Color.Red;
+                SaveB1.Enabled = false;
+            }
+            else
+            {
+                nameTB1.BackColor = Color.White;
+            }
+            SaveButton();
         }
     }
 }

@@ -54,15 +54,19 @@ namespace Software_2_Rykeem
         }
         private void SaveButton()
         {
-            if (nameTB1.BackColor == Color.White && 
-                addressTB1.BackColor == Color.White &&
-                numberTB1.BackColor == Color.White &&
-                cityTB1.BackColor == Color.White &&
-                countryTB1.BackColor == Color.White)
-            {
-                SaveB1.Enabled = true;
-            }
-            else { SaveB1.Enabled = false; }
+           
+
+
+            Func<bool> allWhite = () =>
+            nameTB1.BackColor == Color.White &&
+            addressTB1.BackColor == Color.White &&
+            numberTB1.BackColor == Color.White &&
+            cityTB1.BackColor == Color.White &&
+            countryTB1.BackColor == Color.White;
+
+            SaveB1.Enabled = allWhite();
+            /// This lambda expression saved a few lins of code and made my code look prettier
+
 
         }
 

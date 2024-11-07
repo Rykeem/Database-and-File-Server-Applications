@@ -123,6 +123,29 @@ namespace Software_2_Rykeem.Database
 
             }
         }
+        public static void Report3(DataGridView dataGrid)
+        {
+            string sql = @"SELECT country AS `Country`, COUNT(*) AS `Total Customers`
+                    FROM address, customer , city, country
+                    WHERE  address.addressId = customer.addressId AND address.cityId = city.cityId AND city.countryId = country.countryId
+                    GROUP BY country";
+
+
+
+            using (MySqlCommand command = new MySqlCommand(sql, conn))
+            {
+                MySqlDataAdapter data = new MySqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                data.Fill(dataTable);
+
+                dataGrid.DataSource = dataTable;
+                dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
+            }
+
+        }
+
         public static bool Login(string username, string password)
         {
             try
@@ -132,15 +155,12 @@ namespace Software_2_Rykeem.Database
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
                 using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.HasRows)
-                       
-                        return true;
-                    else
-                    {
-                        return false;
-                    }
+                { 
+                    Func<bool> rows = () => reader.HasRows;
+                    return rows();
+                    // This lambda expression is more impact and reduces the total amount of code written. Instead of the alternative an if and else statment.
                 }
+
             }
             catch (MySqlException ex)
             {
@@ -148,7 +168,7 @@ namespace Software_2_Rykeem.Database
                 return false;
             }
         }
-        public static void Alert(int userId) //working
+        public static void Alert(int userId) 
         {
            DateTime localtime = DateTime.Now;
            DateTime currentTime = localtime.ToUniversalTime();
@@ -178,7 +198,10 @@ namespace Software_2_Rykeem.Database
                                 MessageBox.Show("You have an upcomming appointment within the next 15 minutes");
                                 break;
                             }
+
+                            
                         }
+
 
                     }
                 }
@@ -292,7 +315,7 @@ namespace Software_2_Rykeem.Database
             }
         }
 
-        public static void AppointmentDatabase(DataGridView datagrid) //working on 
+        public static void AppointmentDatabase(DataGridView datagrid) 
         {
             try
             {

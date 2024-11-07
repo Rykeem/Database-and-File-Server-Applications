@@ -100,10 +100,12 @@
             // 
             // regionTB
             // 
-            this.regionTB.Location = new System.Drawing.Point(129, 227);
+            this.regionTB.Location = new System.Drawing.Point(129, 224);
+            this.regionTB.Multiline = true;
             this.regionTB.Name = "regionTB";
             this.regionTB.ReadOnly = true;
-            this.regionTB.Size = new System.Drawing.Size(100, 20);
+            this.regionTB.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.regionTB.Size = new System.Drawing.Size(142, 20);
             this.regionTB.TabIndex = 7;
             // 
             // regionLB

@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.report1DGV = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Row3DGV = new System.Windows.Forms.DataGridView();
             this.BackB = new System.Windows.Forms.Button();
             this.Report2DV = new System.Windows.Forms.DataGridView();
             this.ReportLB = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.UserIDCB1 = new System.Windows.Forms.ComboBox();
             this.UserIDLB1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.report1DGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Row3DGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Report2DV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,21 +54,22 @@
             this.report1DGV.Size = new System.Drawing.Size(344, 193);
             this.report1DGV.TabIndex = 6;
             // 
-            // dataGridView1
+            // Row3DGV
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(804, 365);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(294, 193);
-            this.dataGridView1.TabIndex = 7;
+            this.Row3DGV.AllowUserToAddRows = false;
+            this.Row3DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Row3DGV.Location = new System.Drawing.Point(486, 365);
+            this.Row3DGV.MultiSelect = false;
+            this.Row3DGV.Name = "Row3DGV";
+            this.Row3DGV.ReadOnly = true;
+            this.Row3DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Row3DGV.Size = new System.Drawing.Size(294, 193);
+            this.Row3DGV.TabIndex = 7;
+            this.Row3DGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // BackB
             // 
-            this.BackB.Location = new System.Drawing.Point(1206, 522);
+            this.BackB.Location = new System.Drawing.Point(836, 555);
             this.BackB.Name = "BackB";
             this.BackB.Size = new System.Drawing.Size(103, 36);
             this.BackB.TabIndex = 14;
@@ -121,29 +123,41 @@
             // UserIDLB1
             // 
             this.UserIDLB1.AutoSize = true;
-            this.UserIDLB1.Location = new System.Drawing.Point(455, 43);
+            this.UserIDLB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserIDLB1.Location = new System.Drawing.Point(456, 43);
             this.UserIDLB1.Name = "UserIDLB1";
-            this.UserIDLB1.Size = new System.Drawing.Size(43, 13);
+            this.UserIDLB1.Size = new System.Drawing.Size(83, 25);
             this.UserIDLB1.TabIndex = 33;
             this.UserIDLB1.Text = "User ID";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(469, 315);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(351, 37);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Customers Per Country";
             // 
             // Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1484, 621);
+            this.ClientSize = new System.Drawing.Size(979, 621);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.UserIDCB1);
             this.Controls.Add(this.UserIDLB1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ReportLB);
             this.Controls.Add(this.Report2DV);
             this.Controls.Add(this.BackB);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.Row3DGV);
             this.Controls.Add(this.report1DGV);
             this.Name = "Report";
             this.Text = "Report";
             ((System.ComponentModel.ISupportInitialize)(this.report1DGV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Row3DGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Report2DV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -153,12 +167,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView report1DGV;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Row3DGV;
         private System.Windows.Forms.Button BackB;
         private System.Windows.Forms.DataGridView Report2DV;
         private System.Windows.Forms.Label ReportLB;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox UserIDCB1;
         private System.Windows.Forms.Label UserIDLB1;
+        private System.Windows.Forms.Label label2;
     }
 }

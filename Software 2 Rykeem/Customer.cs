@@ -225,8 +225,8 @@ namespace Software_2_Rykeem
 
         private void LogoutB_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
+            
+            Login.Instance.Show();
             this.Close();
         }
 

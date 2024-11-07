@@ -19,6 +19,8 @@ namespace Software_2_Rykeem
             InitializeComponent();
             Connection.Report1(report1DGV);
             Connection.UserIDComboBox(UserIDCB1);
+            Connection.Report3(Row3DGV);
+            
         }
 
         private void BackB_Click(object sender, EventArgs e)
@@ -34,9 +36,14 @@ namespace Software_2_Rykeem
 
         private void UserIDCB1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //int user = int.Parse(UserIDCB1.Text);
+            
             Connection.Report2(Report2DV, UserIDCB1.Text);
            
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

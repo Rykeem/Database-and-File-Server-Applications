@@ -68,6 +68,7 @@
             this.nameTB1.Name = "nameTB1";
             this.nameTB1.Size = new System.Drawing.Size(100, 20);
             this.nameTB1.TabIndex = 17;
+            this.nameTB1.TextChanged += new System.EventHandler(this.nameTB1_TextChanged);
             // 
             // ScheduleTimeLB1
             // 

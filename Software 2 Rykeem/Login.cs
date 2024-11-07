@@ -17,9 +17,11 @@ namespace Software_2_Rykeem
 {
     public partial class Login : Form
     {
+        public static Login Instance { get; set; }
         public Login()
         {
             InitializeComponent();
+            Instance = this;
         }
 
        
@@ -72,9 +74,11 @@ namespace Software_2_Rykeem
                             file.WriteLine(failedLogin);
                         }
                     }
-
-                    customer.Show();
                     this.Hide();
+                    customer.Show();
+                    userNameTB.Clear();
+                    passwordTB.Clear();
+
 
                 }
                 else
@@ -83,6 +87,8 @@ namespace Software_2_Rykeem
                     using (StreamWriter file = new StreamWriter(filez, true))
                     {
                         file.WriteLine(failedLogin);
+                        userNameTB.Clear();
+                        passwordTB.Clear();
                     }
                 }
             }
@@ -102,6 +108,7 @@ namespace Software_2_Rykeem
                         using (StreamWriter file = new StreamWriter(filez, true))
                         {
                             file.WriteLine(successfulLogin);
+
                         }
                     }
                     catch (Exception ex)
@@ -117,6 +124,8 @@ namespace Software_2_Rykeem
 
                     customer.Show();
                     this.Hide();
+                    userNameTB.Clear();
+                    passwordTB.Clear();
                 }
                 else
                 {
@@ -124,6 +133,8 @@ namespace Software_2_Rykeem
                     using (StreamWriter file = new StreamWriter(filez, true))
                     {
                         file.WriteLine(failedLogin);
+                        userNameTB.Clear();
+                        passwordTB.Clear();
                     }
                 }
             }

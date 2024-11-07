@@ -16,11 +16,13 @@ namespace Software_2_Rykeem
         public static Customer Instance { get; set; }
         public Report()
         {
+
             InitializeComponent();
             Connection.Report1(report1DGV);
-            Connection.UserIDComboBox(UserIDCB1);
             Connection.Report3(Row3DGV);
+            Connection.UserIDComboBox(UserIDCB1);
             
+
         }
 
         private void BackB_Click(object sender, EventArgs e)

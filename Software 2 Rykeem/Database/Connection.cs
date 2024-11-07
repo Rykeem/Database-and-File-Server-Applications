@@ -95,8 +95,15 @@ namespace Software_2_Rykeem.Database
                     data.Fill(dataTable);
 
                     dataGrid.DataSource = dataTable;
-                    dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                    
                 
+
+                var zeroCount = dataTable.AsEnumerable().Where(row => row.Field<long>("Appointment Count") > 0).CopyToDataTable(); 
+                //Labda #1 It helps make sure that each row are greater than 0. And this code is also in 1 line which helps save space.
+
+
+                dataGrid.DataSource = zeroCount;
+                dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
 
         }
@@ -118,11 +125,33 @@ namespace Software_2_Rykeem.Database
                 DataTable dataTable = new DataTable();
                 data.Fill(dataTable);
 
-                dataGrid.DataSource = dataTable;
-                dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+               dataGrid.DataSource = dataTable;
+
+
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    var customerSort = dataTable.AsEnumerable()
+                          .OrderBy(row => row.Field<int>("userId"))
+                          .CopyToDataTable();
+                    //Labda #2 This lambda expression helps me sort the datagridview by userIds. And this code is also helps save space.
+
+                    
+
+                    dataGrid.DataSource = customerSort;
+                    dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                }
+                else
+                {
+                   
+                }
+                    
+                
+                
 
             }
         }
+       
         public static void Report3(DataGridView dataGrid)
         {
             string sql = @"SELECT country AS `Country`, COUNT(*) AS `Total Customers`
@@ -139,8 +168,13 @@ namespace Software_2_Rykeem.Database
                 DataTable dataTable = new DataTable();
                 data.Fill(dataTable);
 
-                dataGrid.DataSource = dataTable;
+               
+
+                var zeroCount = dataTable.AsEnumerable().Where(row => row.Field<long>("Total Customers") > 0).CopyToDataTable();
+                dataGrid.DataSource = zeroCount;
                 dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
+                //Labda #3 Its similar to the first one and helps make sure that all COUNTS are over 1.
 
             }
 

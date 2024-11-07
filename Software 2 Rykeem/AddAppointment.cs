@@ -32,52 +32,7 @@ namespace Software_2_Rykeem
             SaveB1.Enabled = false;
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            //DateTime dateTime = dateTimePicker1.Value;
-
-
-            //TimeZoneInfo est = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            //DateTime datetimeEST = TimeZoneInfo.ConvertTime(dateTime, TimeZoneInfo.Local, est); // converts user's input to est 
-
-            ////checks if date is between monday and friday
-            //if (datetimeEST.DayOfWeek >= DayOfWeek.Monday && datetimeEST.DayOfWeek >= DayOfWeek.Friday)
-            //{
-            //    if (datetimeEST.TimeOfDay >= new TimeSpan(9,0,0) && datetimeEST.TimeOfDay <= new TimeSpan(17,0,0))
-            //    {
-
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Time has to be between 9AM and 5PM EST");
-            //    }
-
-            //}
-
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            //DateTime dateTime = dateTimePicker2.Value;
-
-
-            //TimeZoneInfo est = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            //DateTime datetimeEST = TimeZoneInfo.ConvertTime(dateTime, TimeZoneInfo.Local, est); // converts user's input to est 
-
-            ////checks if date is between monday and friday
-            //if (datetimeEST.DayOfWeek >= DayOfWeek.Monday && datetimeEST.DayOfWeek >= DayOfWeek.Friday)
-            //{
-            //    if (datetimeEST.TimeOfDay >= new TimeSpan(9, 0, 0) && datetimeEST.TimeOfDay <= new TimeSpan(17, 0, 0))
-            //    {
-
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Time has to be between 9AM and 5PM EST");
-            //    }
-
-            //}
-        }
+       
 
         private void CancelB1_Click(object sender, EventArgs e)
         {

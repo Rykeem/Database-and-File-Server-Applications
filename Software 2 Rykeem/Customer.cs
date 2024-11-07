@@ -229,6 +229,14 @@ namespace Software_2_Rykeem
             login.Show();
             this.Close();
         }
+
+        private void ReportB_Click(object sender, EventArgs e)
+        {
+            
+            Report report = new Report();
+            report.Show();
+            this.Hide();
+        }
     }
 }
 

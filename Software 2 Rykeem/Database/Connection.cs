@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -77,7 +79,50 @@ namespace Software_2_Rykeem.Database
 
 
         }
+        public static void Report1(DataGridView dataGrid)
+        {
+            string sql = @"SELECT type AS `Type`, DATE_FORMAT(start, '%M') AS `Month`, COUNT(*) AS `Appointment Count`
+                           FROM appointment
+                           GROUP BY DATE_FORMAT(start, '%M'), type";
 
+
+
+            using (MySqlCommand command = new MySqlCommand(sql, conn)) 
+            {
+                MySqlDataAdapter data = new MySqlDataAdapter(command);
+                
+                    DataTable dataTable = new DataTable();
+                    data.Fill(dataTable);
+
+                    dataGrid.DataSource = dataTable;
+                    dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                
+            }
+
+        }
+
+        public static void Report2(DataGridView dataGrid, string userId)
+        {
+
+            string sql = @"SELECT appointmentId, appointment.customerId, userId, appointment.type, appointment.start, appointment.end 
+                              FROM appointment, customer 
+                              WHERE customer.customerId = appointment.customerId AND userId = @userId";
+
+            using (MySqlCommand command = new MySqlCommand(sql, conn))
+            {
+                command.Parameters.AddWithValue("@userId",userId);
+
+
+                MySqlDataAdapter data = new MySqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                data.Fill(dataTable);
+
+                dataGrid.DataSource = dataTable;
+                dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
+            }
+        }
         public static bool Login(string username, string password)
         {
             try

@@ -65,7 +65,7 @@
             // 
             this.addButton.Location = new System.Drawing.Point(63, 340);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.Size = new System.Drawing.Size(103, 36);
             this.addButton.TabIndex = 1;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
@@ -73,9 +73,9 @@
             // 
             // modifyButton
             // 
-            this.modifyButton.Location = new System.Drawing.Point(177, 340);
+            this.modifyButton.Location = new System.Drawing.Point(194, 340);
             this.modifyButton.Name = "modifyButton";
-            this.modifyButton.Size = new System.Drawing.Size(75, 23);
+            this.modifyButton.Size = new System.Drawing.Size(103, 36);
             this.modifyButton.TabIndex = 2;
             this.modifyButton.Text = "Modify";
             this.modifyButton.UseVisualStyleBackColor = true;
@@ -83,9 +83,9 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(290, 340);
+            this.deleteButton.Location = new System.Drawing.Point(315, 340);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.Size = new System.Drawing.Size(103, 36);
             this.deleteButton.TabIndex = 3;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
@@ -94,9 +94,10 @@
             // customerLB
             // 
             this.customerLB.AutoSize = true;
+            this.customerLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerLB.Location = new System.Drawing.Point(40, 25);
             this.customerLB.Name = "customerLB";
-            this.customerLB.Size = new System.Drawing.Size(51, 13);
+            this.customerLB.Size = new System.Drawing.Size(156, 37);
             this.customerLB.TabIndex = 4;
             this.customerLB.Text = "Customer";
             // 
@@ -109,9 +110,9 @@
             // 
             // deleteButton2
             // 
-            this.deleteButton2.Location = new System.Drawing.Point(290, 776);
+            this.deleteButton2.Location = new System.Drawing.Point(315, 776);
             this.deleteButton2.Name = "deleteButton2";
-            this.deleteButton2.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton2.Size = new System.Drawing.Size(103, 36);
             this.deleteButton2.TabIndex = 8;
             this.deleteButton2.Text = "Delete";
             this.deleteButton2.UseVisualStyleBackColor = true;
@@ -119,9 +120,9 @@
             // 
             // modifyButton2
             // 
-            this.modifyButton2.Location = new System.Drawing.Point(177, 776);
+            this.modifyButton2.Location = new System.Drawing.Point(194, 776);
             this.modifyButton2.Name = "modifyButton2";
-            this.modifyButton2.Size = new System.Drawing.Size(75, 23);
+            this.modifyButton2.Size = new System.Drawing.Size(103, 36);
             this.modifyButton2.TabIndex = 7;
             this.modifyButton2.Text = "Modify";
             this.modifyButton2.UseVisualStyleBackColor = true;
@@ -131,7 +132,7 @@
             // 
             this.addButton2.Location = new System.Drawing.Point(63, 776);
             this.addButton2.Name = "addButton2";
-            this.addButton2.Size = new System.Drawing.Size(75, 23);
+            this.addButton2.Size = new System.Drawing.Size(103, 36);
             this.addButton2.TabIndex = 6;
             this.addButton2.Text = "Add";
             this.addButton2.UseVisualStyleBackColor = true;
@@ -152,18 +153,20 @@
             // AppointmentLB
             // 
             this.AppointmentLB.AutoSize = true;
-            this.AppointmentLB.Location = new System.Drawing.Point(60, 462);
+            this.AppointmentLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AppointmentLB.Location = new System.Drawing.Point(30, 473);
             this.AppointmentLB.Name = "AppointmentLB";
-            this.AppointmentLB.Size = new System.Drawing.Size(71, 13);
+            this.AppointmentLB.Size = new System.Drawing.Size(214, 37);
             this.AppointmentLB.TabIndex = 9;
             this.AppointmentLB.Text = "Appointments";
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(274, 462);
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(250, 484);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(91, 17);
+            this.radioButton1.Size = new System.Drawing.Size(125, 24);
             this.radioButton1.TabIndex = 10;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Current Week";
@@ -173,9 +176,10 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(401, 462);
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.Location = new System.Drawing.Point(381, 484);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(92, 17);
+            this.radioButton2.Size = new System.Drawing.Size(129, 24);
             this.radioButton2.TabIndex = 11;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Current Month";
@@ -185,9 +189,10 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(520, 462);
+            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton3.Location = new System.Drawing.Point(516, 484);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(97, 17);
+            this.radioButton3.Size = new System.Drawing.Size(138, 24);
             this.radioButton3.TabIndex = 12;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "All Apointments";
@@ -212,6 +217,7 @@
             this.ReportB.TabIndex = 14;
             this.ReportB.Text = "Report";
             this.ReportB.UseVisualStyleBackColor = true;
+            this.ReportB.Click += new System.EventHandler(this.ReportB_Click);
             // 
             // Customer
             // 

@@ -222,6 +222,13 @@ namespace Software_2_Rykeem
             UserTime(AppointmentDGV);
 
         }
+
+        private void LogoutB_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+        }
     }
 }
 

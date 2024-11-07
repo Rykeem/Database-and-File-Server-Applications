@@ -42,6 +42,8 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.LogoutB = new System.Windows.Forms.Button();
+            this.ReportB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AppointmentDGV)).BeginInit();
             this.SuspendLayout();
@@ -192,11 +194,32 @@
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
+            // LogoutB
+            // 
+            this.LogoutB.Location = new System.Drawing.Point(650, 776);
+            this.LogoutB.Name = "LogoutB";
+            this.LogoutB.Size = new System.Drawing.Size(103, 36);
+            this.LogoutB.TabIndex = 13;
+            this.LogoutB.Text = "Logout";
+            this.LogoutB.UseVisualStyleBackColor = true;
+            this.LogoutB.Click += new System.EventHandler(this.LogoutB_Click);
+            // 
+            // ReportB
+            // 
+            this.ReportB.Location = new System.Drawing.Point(650, 724);
+            this.ReportB.Name = "ReportB";
+            this.ReportB.Size = new System.Drawing.Size(103, 36);
+            this.ReportB.TabIndex = 14;
+            this.ReportB.Text = "Report";
+            this.ReportB.UseVisualStyleBackColor = true;
+            // 
             // Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(765, 824);
+            this.Controls.Add(this.ReportB);
+            this.Controls.Add(this.LogoutB);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -236,5 +259,7 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.Button LogoutB;
+        private System.Windows.Forms.Button ReportB;
     }
 }

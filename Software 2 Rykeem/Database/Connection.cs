@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Prepare;
 using Org.BouncyCastle.Bcpg.OpenPgp;
 using System;
 using System.Collections.Generic;
@@ -79,106 +80,111 @@ namespace Software_2_Rykeem.Database
 
 
         }
-        public static void Report1(DataGridView dataGrid)
-        {
-            string sql = @"SELECT type AS `Type`, DATE_FORMAT(start, '%M') AS `Month`, COUNT(*) AS `Appointment Count`
-                           FROM appointment
-                           GROUP BY DATE_FORMAT(start, '%M'), type";
+        //public static void Report1(DataGridView dataGrid)
+        //{
+        //    string sql = @"SELECT type AS `Type`, DATE_FORMAT(start, '%M') AS `Month`, COUNT(*) AS `Appointment Count`
+        //                   FROM appointment
+        //                   GROUP BY DATE_FORMAT(start, '%M'), type";
 
 
 
-            using (MySqlCommand command = new MySqlCommand(sql, conn)) 
-            {
-                MySqlDataAdapter data = new MySqlDataAdapter(command);
+        //    using (MySqlCommand command = new MySqlCommand(sql, conn)) 
+        //    {
+        //        MySqlDataAdapter data = new MySqlDataAdapter(command);
                 
-                    DataTable dataTable = new DataTable();
-                    data.Fill(dataTable);
+        //            DataTable dataTable = new DataTable();
+        //            data.Fill(dataTable);
 
-                    dataGrid.DataSource = dataTable;
+        //            dataGrid.DataSource = dataTable;
                     
                 
 
-                var zeroCount = dataTable.AsEnumerable().Where(row => row.Field<long>("Appointment Count") > 0).CopyToDataTable(); 
-                //Labda #1 It helps make sure that each row are greater than 0. And this code is also in 1 line which helps save space.
+        //        var zeroCount = dataTable.AsEnumerable().Where(row => row.Field<long>("Appointment Count") > 0).CopyToDataTable(); 
+        //        //Labda #1 It helps make sure that each row are greater than 0. And this code is also in 1 line which helps save space.
 
 
-                dataGrid.DataSource = zeroCount;
-                dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            }
+        //        dataGrid.DataSource = zeroCount;
+        //        dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        //    }
 
-        }
+        //}
 
-        public static void Report2(DataGridView dataGrid, string userId)
-        {
+        //public static void Report2(DataGridView dataGrid, string userId)
+        //{
 
-            string sql = @"SELECT appointmentId, appointment.customerId, userId, appointment.type, appointment.start, appointment.end 
-                              FROM appointment, customer 
-                              WHERE customer.customerId = appointment.customerId AND userId = @userId";
+        //    string sql = @"SELECT appointmentId, appointment.customerId, userId, appointment.type, appointment.start, appointment.end 
+        //                      FROM appointment, customer 
+        //                      WHERE customer.customerId = appointment.customerId AND userId = @userId";
 
-            using (MySqlCommand command = new MySqlCommand(sql, conn))
-            {
-                command.Parameters.AddWithValue("@userId",userId);
-
-
-                MySqlDataAdapter data = new MySqlDataAdapter(command);
-
-                DataTable dataTable = new DataTable();
-                data.Fill(dataTable);
-
-               dataGrid.DataSource = dataTable;
+        //    using (MySqlCommand command = new MySqlCommand(sql, conn))
+        //    {
+        //        command.Parameters.AddWithValue("@userId",userId);
 
 
+        //        MySqlDataAdapter data = new MySqlDataAdapter(command);
 
-                if (dataTable.Rows.Count > 0)
-                {
-                    var customerSort = dataTable.AsEnumerable()
-                          .OrderBy(row => row.Field<int>("userId"))
-                          .CopyToDataTable();
-                    //Labda #2 This lambda expression helps me sort the datagridview by userIds. And this code is also helps save space.
+        //        DataTable dataTable = new DataTable();
+        //        data.Fill(dataTable);
+
+        //       dataGrid.DataSource = dataTable;
+
+
+
+        //        if (dataTable.Rows.Count > 0)
+        //        {
+        //            var customerSort = dataTable.AsEnumerable()
+        //                  .OrderBy(row => row.Field<int>("userId"))
+        //                  .CopyToDataTable();
+        //            //Labda #2 This lambda expression helps me sort the datagridview by userIds. And this code is also helps save space.
 
                     
 
-                    dataGrid.DataSource = customerSort;
-                    dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-                }
-                else
-                {
+        //            dataGrid.DataSource = customerSort;
+        //            dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        //        }
+        //        else
+        //        {
                    
-                }
+        //        }
                     
                 
                 
 
-            }
-        }
+        //    }
+        //}
        
-        public static void Report3(DataGridView dataGrid)
-        {
-            string sql = @"SELECT country AS `Country`, COUNT(*) AS `Total Customers`
-                    FROM address, customer , city, country
-                    WHERE  address.addressId = customer.addressId AND address.cityId = city.cityId AND city.countryId = country.countryId
-                    GROUP BY country";
+        //public static void Report3(DataGridView dataGrid)
+        //{
+        //    string sql = @"SELECT country AS `Country`, COUNT(*) AS `Total Customers`
+        //            FROM address, customer , city, country
+        //            WHERE  address.addressId = customer.addressId AND address.cityId = city.cityId AND city.countryId = country.countryId
+        //            GROUP BY country";
 
 
 
-            using (MySqlCommand command = new MySqlCommand(sql, conn))
-            {
-                MySqlDataAdapter data = new MySqlDataAdapter(command);
+        //    using (MySqlCommand command = new MySqlCommand(sql, conn))
+        //    {
+        //        MySqlDataAdapter data = new MySqlDataAdapter(command);
 
-                DataTable dataTable = new DataTable();
-                data.Fill(dataTable);
+        //        DataTable dataTable = new DataTable();
+        //        data.Fill(dataTable);
 
                
 
-                var zeroCount = dataTable.AsEnumerable().Where(row => row.Field<long>("Total Customers") > 0).CopyToDataTable();
-                dataGrid.DataSource = zeroCount;
-                dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        //        var zeroCount = dataTable.AsEnumerable().Where(row => row.Field<long>("Total Customers") > 0).CopyToDataTable();
+        //        dataGrid.DataSource = zeroCount;
+        //        dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
-                //Labda #3 Its similar to the first one and helps make sure that all COUNTS are over 1.
+        //        //Labda #3 Its similar to the first one and helps make sure that all COUNTS are over 1.
 
-            }
+        //    }
 
-        }
+        //}
+
+        //public static void Report4(DataGridView dataGrid)
+        //{
+        //    string sql = @"SELECT * FROM address"
+        //}
 
         public static bool Login(string username, string password)
         {
@@ -704,4 +710,225 @@ namespace Software_2_Rykeem.Database
         }
 
     }
+    // Reports using 
+    public abstract class ReportForm
+    {
+        protected MySqlConnection conn { get; }
+
+        protected ReportForm(MySqlConnection connection)
+        {
+            conn = connection;
+        }
+        public abstract void CreateReport(DataGridView dataGrid);
+        public virtual void CreateReport2(DataGridView dataGrid, string userInput)
+        {
+            MessageBox.Show("This report needs user input", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+
+
+        public void ExecuteQuery(string sql, DataGridView dataGrid)
+        {
+            using (MySqlCommand command = new MySqlCommand(sql, conn))
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                dataGrid.DataSource = dt;
+                dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+        }
+
+
+    }
+
+    public class Report1 : ReportForm
+    {
+        public Report1(MySqlConnection connection) : base(connection) { }
+        public override void CreateReport(DataGridView dataGrid)
+        {
+            string sql = @"SELECT type AS `Type`, DATE_FORMAT(start, '%M') AS `Month`, COUNT(*) AS `Appointment Count`
+                          FROM appointment
+                          GROUP BY DATE_FORMAT(start, '%M'), type";
+
+            ExecuteQuery(sql, dataGrid);
+
+            
+
+               var dataTable = (DataTable)dataGrid.DataSource;
+
+
+
+                var zeroCount = dataTable.AsEnumerable()
+                .Where(row => row.Field<long>("Appointment Count") > 0)
+                .CopyToDataTable();
+                //Labda #1 It helps make sure that each row are greater than 0. And this code is also in 1 line which helps save space.
+
+
+                dataGrid.DataSource = zeroCount;
+               
+            
+
+        }
+    }
+
+    public class Report2 : ReportForm
+    {
+        private readonly string _userId;
+        public Report2(MySqlConnection conn, string userId) :base(conn)
+        {
+            _userId = userId;
+        }
+        public override void CreateReport(DataGridView dataGrid)
+        {
+
+            string sql = @"SELECT appointmentId, appointment.customerId, userId, appointment.type, appointment.start, appointment.end 
+                              FROM appointment, customer 
+                              WHERE customer.customerId = appointment.customerId AND userId = @userId";
+
+            using (MySqlCommand command = new MySqlCommand(sql, conn))
+            {
+                command.Parameters.AddWithValue("@userId", _userId);
+
+
+                MySqlDataAdapter data = new MySqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                data.Fill(dataTable);
+
+                dataGrid.DataSource = dataTable;
+
+
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    var customerSort = dataTable.AsEnumerable()
+                          .OrderBy(row => row.Field<int>("userId"))
+                          .CopyToDataTable();
+                    //Labda #2 This lambda expression helps me sort the datagridview by userIds. And this code is also helps save space.
+
+
+
+                    dataGrid.DataSource = customerSort;
+                    
+                }
+                else
+                {
+                    dataGrid.DataSource = dataTable;
+                }
+
+                dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
+
+            }
+
+        }
+    }
+
+    public class Report3 : ReportForm
+    {
+        public Report3(MySqlConnection conn) : base(conn) { }
+
+        public override void CreateReport(DataGridView dataGrid)
+        {
+            string sql = @"SELECT country AS `Country`, COUNT(*) AS `Total Customers`          FROM address, customer , city, country
+                           WHERE  address.addressId = customer.addressId AND address.cityId = city.cityId AND city.countryId = country.countryId
+                           GROUP BY country";
+            ExecuteQuery(sql, dataGrid);
+            var dataTable = (DataTable)dataGrid.DataSource;
+            var zeroCount = dataTable.AsEnumerable().Where(row => row.Field<long>("Total Customers") > 0).CopyToDataTable();
+            dataGrid.DataSource = zeroCount;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+    public class Report4 : ReportForm
+    {
+        public Report4(MySqlConnection conn) : base(conn) { }
+
+        public override void CreateReport(DataGridView dataGrid)
+        {
+            MessageBox.Show("This requires user input", "Invalid Operation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        public override void CreateReport2(DataGridView dataGrid, string userInput)
+        {
+            if (string.IsNullOrWhiteSpace(userInput))
+            {
+                MessageBox.Show("Search Box can not be empty", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string sql = @"SELECT addressId AS ID, address AS Description
+                            FROM address
+                            WHERE CAST(addressId AS CHAR) LIKE @input OR address LIKE @input
+
+                            UNION ALL
+
+                            SELECT customerId AS ID, customerName AS Description
+                            FROM customer
+                            WHERE CAST(customerId AS CHAR) LIKE @input OR customerName LIKE @input
+
+                            UNION ALL
+
+                            SELECT cityId AS ID, city AS Description
+                            FROM city
+                            WHERE CAST(cityId AS CHAR) LIKE @input OR city LIKE @input
+
+                            UNION ALL
+
+                            SELECT countryId AS ID, country AS Description
+                            FROM country
+                            WHERE CAST(countryId AS CHAR) LIKE @input OR country LIKE @input
+
+                            UNION ALL
+
+                            SELECT appointmentId AS ID, CONCAT(type, ' | ', DATE_FORMAT(start, '%Y-%m-%d %H:%i'), ' - ', DATE_FORMAT(end, '%Y-%m-%d %H:%i')) AS Description
+                            FROM appointment
+                            WHERE CAST(appointmentId AS CHAR) LIKE @input OR type LIKE @input OR DATE_FORMAT(start, '%Y-%m-%d %H:%i') LIKE @input OR DATE_FORMAT(end, '%Y-%m-%d %H:%i') LIKE @input";
+
+            using (MySqlCommand command = new MySqlCommand(sql, conn))
+            {
+                command.Parameters.AddWithValue("@input", $"%{userInput}%");
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count == 0)
+                {
+                    MessageBox.Show("No result were found for your input");
+                }
+                dataGrid.DataSource = dataTable;
+                dataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+   
+        
+       }
+
+
+
+
+
+
+
+
+
+
+    }
 }
+

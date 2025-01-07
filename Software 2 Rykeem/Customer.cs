@@ -233,7 +233,7 @@ namespace Software_2_Rykeem
         private void ReportB_Click(object sender, EventArgs e)
         {
             
-            Report report = new Report();
+            Report report = new Report(Connection.conn);
             report.Show();
             this.Hide();
         }

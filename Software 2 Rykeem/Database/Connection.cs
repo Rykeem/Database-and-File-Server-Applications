@@ -710,7 +710,7 @@ namespace Software_2_Rykeem.Database
         }
 
     }
-    // Reports using 
+    // Changed old reports to new one using inheritence and polymorphism :)
     public abstract class ReportForm
     {
         protected MySqlConnection conn { get; }
